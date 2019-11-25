@@ -1,0 +1,39 @@
+@import './components/CardsSet/CardsField.scss';
+
+* { 
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: rgb(27, 26, 26);
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
