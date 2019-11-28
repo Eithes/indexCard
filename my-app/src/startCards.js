@@ -3,7 +3,7 @@ export default [
     setName: 'JS-DOM',
     id: 'JS-BASIS',
     emoji: 'u1F3E8',
-    colors: ['#97e480', '#77bb63','#9fc55a', '#ffd643', '#277d97', '#792797'],
+    colors: ['#A1E48C', '#8cb7e4', '#e4ae8c', '#97e480', '#77bb63','#9fc55a', '#ffd643', '#277d97', '#792797'],
     cards: [
       { 
         name: 'Dom-tree', 
@@ -15,7 +15,8 @@ export default [
       },
       { 
         name: 'Host environment', 
-        question:'what is it, - parts of it for js (in browser), - browser root object, - what is DOM',
+        question:'what is it, - parts of it for js (in browser), - browser root object, - what is DOM'
+        ,
         answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim fringilla mauris, et scelerisque turpis hendrerit quis. Nullam eu sodales lorem, eget mattis massa. Fusce molestie blandit nunc eget pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus.`,
         difficulty: 2,
         subTheme: 'DOM',
@@ -46,14 +47,14 @@ export default [
         difficulty: 4,
         subTheme: 'Generators',
       },    
-      // { 
-      //   name: 'Dom-tree', 
-      //   question:'- scheme, - Autocorrection, - node-types, - walking the DOM',
-      //   answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim fringilla mauris, et scelerisque turpis hendrerit quis. Nullam eu sodales lorem, eget mattis massa. Fusce molestie blandit nunc eget pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque bibendum nec turpis a ullamcorper. Pellentesque tempor laoreet elit, in convallis purus malesuada et. Integer sit amet felis blandit, condimentum ligula nec, vestibulum sem. Mauris commodo massa odio, ut faucibus ante dapibus eu. Nulla facilisi. Quisque pellentesque magna sed sem convallis gravida. Mauris rhoncus massa aliquam diam iaculis congue. Nunc dignissim tempor lectus blandit pulvinar. Quisque lorem orci, porttitor eu orci pulvinar, scelerisque rhoncus neque. Maecenas ac dui commodo, laoreet purus sit amet, feugiat ipsum. Aliquam sagittis nisi vel dui posuere facilisis. Sed in viverra mi.
-      //   Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla non convallis orci, vitae egestas nisl. In hac habitasse platea dictumst. Vestibulum dignissim mauris dolor, eget malesuada sapien aliquet eget. Integer feugiat ipsum magna, eget auctor turpis tincidunt vel. Phasellus pharetra at elit id dignissim. Vivamus in magna consectetur ipsum euismod ullamcorper quis sit amet leo. Nunc at nisi ullamcorper, sagittis orci vel, bibendum lectus. Cras eleifend luctus dolor, eget convallis nibh faucibus eget. Nunc imperdiet commodo nunc, ac mollis eros commodo eget. Fusce id felis eleifend ex rhoncus hendrerit accumsan id elit. Praesent pellentesque urna eget enim venenatis mattis. Vivamus maximus sit amet turpis non efficitur. Integer sit amet laoreet urna..`,
-      //   difficulty: 1,
-      //   subTheme: 'DOM',
-      // },
+      { 
+        name: 'Dom-tree', 
+        question:'- scheme, - Autocorrection, - node-types, - walking the DOM',
+        answer: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dignissim fringilla mauris, et scelerisque turpis hendrerit quis. Nullam eu sodales lorem, eget mattis massa. Fusce molestie blandit nunc eget pharetra. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque bibendum nec turpis a ullamcorper. Pellentesque tempor laoreet elit, in convallis purus malesuada et. Integer sit amet felis blandit, condimentum ligula nec, vestibulum sem. Mauris commodo massa odio, ut faucibus ante dapibus eu. Nulla facilisi. Quisque pellentesque magna sed sem convallis gravida. Mauris rhoncus massa aliquam diam iaculis congue. Nunc dignissim tempor lectus blandit pulvinar. Quisque lorem orci, porttitor eu orci pulvinar, scelerisque rhoncus neque. Maecenas ac dui commodo, laoreet purus sit amet, feugiat ipsum. Aliquam sagittis nisi vel dui posuere facilisis. Sed in viverra mi.
+        Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla non convallis orci, vitae egestas nisl. In hac habitasse platea dictumst. Vestibulum dignissim mauris dolor, eget malesuada sapien aliquet eget. Integer feugiat ipsum magna, eget auctor turpis tincidunt vel. Phasellus pharetra at elit id dignissim. Vivamus in magna consectetur ipsum euismod ullamcorper quis sit amet leo. Nunc at nisi ullamcorper, sagittis orci vel, bibendum lectus. Cras eleifend luctus dolor, eget convallis nibh faucibus eget. Nunc imperdiet commodo nunc, ac mollis eros commodo eget. Fusce id felis eleifend ex rhoncus hendrerit accumsan id elit. Praesent pellentesque urna eget enim venenatis mattis. Vivamus maximus sit amet turpis non efficitur. Integer sit amet laoreet urna..`,
+        difficulty: 1,
+        subTheme: 'DOM',
+      },
       // { 
       //   name: 'Host environment', 
       //   question:'- what is it, - parts of it for js (in browser), - browser root object, - what is DOM',

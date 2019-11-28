@@ -1,11 +1,31 @@
 .Card {
-  flex: 1 0 15rem;
-  box-sizing: border-box;
-    min-height: 15rem;
+  flex: 1 0 100%;
+  min-height: 17rem;
   cursor: pointer;
-    border-style: solid;
-    border-color: rgba(0,0,0,.8);
-    border-width:  0  2px 2px  0;
+  border-style: solid;
+  border-color: rgba(0,0,0,.3);
+  border-width:  0  2px 2px  0;
+  color: #121212;
+  &:hover {
+    // background-color: lighten();
+    .Card_info .Card_info_difficulty::before {      
+      width: 100%;
+      height: 100%;
+      top: 0%;
+      left: 0%;
+    }
+    .Card_header::before {
+      width: 100%;
+      height: 70%;
+      top: 15%;
+      left: 0%;
+      transition: all ease-out .5s;
+    }
+  }
+  &:active {
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+  }
+
   .Card_wrapper {
     display: flex;
     flex-direction: column;
@@ -13,57 +33,100 @@
     height: 100%;
   }
   .Card_header {
-    padding: .5rem 1.5rem;
+    padding: .5rem .2rem;
     min-height: 20%;
     align-self: center;
     flex: 0 0 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    &::before {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 50%; 
+      position: absolute;
+      top: 30%;
+      left: 0%; 
+      background-color: #e4da8c;     
+      border-radius: 40%;      
+      z-index: -1;  
+    }
   }
   .Card_question {
     padding: 0 1.5rem 1rem 1.5rem;
-    flex: 1 1 auto;
-    background: powderblue;
+    flex: 1 1 auto;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     li {
       list-style: none;
+      &::first-letter {
+        text-transform: capitalize;
+      }
     }
   }
   .Card_info {
     margin-top: auto;
-    flex: 0 0 2rem;
-    height: 2rem;
-    // display: flex;
-    // height: 20%;
-    // justify-content: space-between;
-    // align-items: center;
-//    .Card_info_more {
-//      background: rgba(0,0,0,.3);
-//      padding: .5rem;
-//    }
-//    .Card_info_difficulty {
-//     background: rgba(0,0,0,.3);
-//     padding: .5rem;
-//     flex: 0 0 auto; 
-//    }
+    flex: 0 0 2rem;    
+    display: flex;    
+    justify-content: space-between;    
+    .Card_info_more {
+      background: rgba(0,0,0,.2);
+      border-top-left-radius: 3px;
+      padding: .5rem;
+      text-transform: uppercase;
+      color: #EAEAEA;
+      &:hover {
+        background: rgba(0,0,0,.4);        
+      }
+      &:active {
+        box-shadow: inset 0px 0px 7px rgba(0,0,0,.5);
+      }
+    }
+    .Card_info_difficulty {
+      padding: .5rem .7rem;
+      margin: .1rem;
+      flex: 0 0 auto; 
+      position: relative;
+      z-index: 2; 
+      &::before {
+        content: '';
+        display: block;
+        width: 0%;
+        height: 0%;
+        background-color: #e4da8c;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;  
+        transition: all ease-out .5s;     
+      }
+    }
+  }
+  
+  @media (min-width: 500px){
+    flex: 0 0 50%;    
+  }
+  @media (min-width: 840px){
+    flex: 0 0 33.333%;    
+  }
+  @media (min-width: 1080px){
+    flex: 0 0 25%;    
+  }
+  @media (min-width: 1400px){
+    flex: 0 0 20%;    
+  }
+  @media (min-width: 1700px){
+    flex: 0 0 16.666%;    
+  }
+  @media (min-width: 1700px){
+    flex: 0 0 16.666%;    
+  }
+  @media (min-width: 2000px){
+    flex: 0 0 14.285%;    
   }
 }
-// .Card:last-child {
-//   flex: 0 0 15rem;
-// }
-
-//   .Card_info {
-//     // margin-top: auto;
-//     // flex-grow: 0;
-//     // display: flex;
-//     // height: 20%;
-//     // justify-content: space-between;
-//     // align-items: center;
-//    .Card_info_more {
-//      background: rgba(0,0,0,.3);
-//      padding: .5rem;
-//    }
-//    .Card_info_difficulty {
-//     background: rgba(0,0,0,.3);
-//     padding: .5rem;
-//     flex: 0 0 auto; 
-//    }
-//   }
-// }
