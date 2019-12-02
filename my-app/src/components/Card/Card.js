@@ -4,10 +4,10 @@ import './Card.scss';
 function Card(props) {
   const currentColor = props.color;  
   const handleOpen = () => {
-    props.openCard(props.id);
+    props.toggleCard(props.id);
   }
   const handleChange = (e) => {
-    props.changeCardColor(e.target.value);
+    props.changeCardColor(props.id, e.target.value);
   }
   return (    
     <div className="Card"        
@@ -49,15 +49,15 @@ function Card(props) {
           </div>
           <form className="Card_opened_buttons">
             <div class="form_radio">
-              <input type='radio' id='green' name='answered' value='green' onChange={handleChange} />
+              <input type='radio' id='green' name='answered' value='0' onChange={handleChange} />
               <label htmlFor='green' className='greenBtn'>I know it!</label>
             </div>
             <div class="form_radio">
-              <input type='radio' name='answered' id='blue' value='blue'  onChange={handleChange} />
+              <input type='radio' name='answered' id='blue' value='1'  onChange={handleChange} />
               <label htmlFor='blue' className='blueBtn'>To Repeat</label>
             </div>   
             <div class="form_radio">
-              <input type='radio' name='answered' id='red'  value='red'  onChange={handleChange} />
+              <input type='radio' name='answered' id='red'  value='2'  onChange={handleChange} />
               <label htmlFor='red' className='redBtn' >Forgotten</label>
             </div>            
           </form>

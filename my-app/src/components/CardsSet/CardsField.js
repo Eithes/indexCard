@@ -8,7 +8,7 @@ function CardsField(props) {
     <Card 
       color={card.color}
       key={card.id} 
-      openCard={props.openCard}
+      toggleCard={props.toggleCard}
       changeCardColor={props.changeCardColor}
       {...card} />
   )

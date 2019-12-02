@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, } from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import CardsField from './CardsField';
@@ -15,13 +15,15 @@ function CardSet(props) {
     setCards(newCards);
   };
  
-  const openCard = (id) => {        
-    const newCards = cards.map(card => id === card.id ? {...card, opened: !card.opened } : card);    
-    setCards(newCards);   
+  const toggleCard = (id, oldCards = cards) => {       
+    const newCards = oldCards.map(card => id === card.id ? {...card, opened: !card.opened } : card);    
+    setCards(newCards);
   };
 
-  const changeCardColor = (value) => {
-    console.log(value);
+  const changeCardColor = (id, value) => {
+    const newCards = cards.map(card => id === card.id ? {...card, color: props.colors[value] } : card);    
+    setCards(newCards);
+    setTimeout(() => toggleCard(id, newCards), 500);
   };
   
   useEffect(() => {
@@ -34,7 +36,7 @@ function CardSet(props) {
       <CardsField 
         cards={cards} 
         colors={props.colors}
-        openCard={openCard}
+        toggleCard={toggleCard}
         changeCardColor={changeCardColor}
       />
       <Footer />
