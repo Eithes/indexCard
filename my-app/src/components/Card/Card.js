@@ -2,10 +2,21 @@ import React from 'react';
 import './Card.scss';
 
 function Card(props) {
-  const currentColor = props.colors[0];
-  return (
-    <div className="Card" style={{backgroundColor: currentColor}}>
-      <div className="Card_wrapper">
+  const currentColor = props.color;  
+  const handleOpen = () => {
+    props.openCard(props.id);
+  }
+  const handleChange = (e) => {
+    props.changeCardColor(e.target.value);
+  }
+  return (    
+    <div className="Card"        
+    >
+    { !props.opened ? (
+      <div className="Card_wrapper"
+        style={{backgroundColor: currentColor}}   
+        onClick={handleOpen}
+      >
         <h3 className="Card_header">
           {props.name}
         </h3>
@@ -16,7 +27,47 @@ function Card(props) {
           <span className="Card_info_difficulty">{props.difficulty}</span>
           <a className="Card_info_more">MORE</a>
         </div>
-      </div>   
+      </div>
+      ) : (
+        <div className="Card_opened" 
+          style={{backgroundColor: currentColor}}          
+        >    
+        <div className="Card_opened_wrapper">
+          <div 
+            className="Card_opened_close"
+            onClick={handleOpen}>
+            X
+          </div>
+          <h2 className="Card_opened_header">
+            {props.name}
+          </h2>
+          <h4 className="Card_opened_difficulty">
+            {props.difficulty}
+          </h4>          
+          <div className="Card_answer">
+            {props.answer}
+          </div>
+          <form className="Card_opened_buttons">
+            <div class="form_radio">
+              <input type='radio' id='green' name='answered' value='green' onChange={handleChange} />
+              <label htmlFor='green' className='greenBtn'>I know it!</label>
+            </div>
+            <div class="form_radio">
+              <input type='radio' name='answered' id='blue' value='blue'  onChange={handleChange} />
+              <label htmlFor='blue' className='blueBtn'>To Repeat</label>
+            </div>   
+            <div class="form_radio">
+              <input type='radio' name='answered' id='red'  value='red'  onChange={handleChange} />
+              <label htmlFor='red' className='redBtn' >Forgotten</label>
+            </div>            
+          </form>
+          <h4 className="Card_header--sub">
+            {props.subTheme}
+          </h4>
+          <button className='editCardBtn'>Edit</button>
+        </div>
+      </div>  
+      )}    
     </div>
   );
 }

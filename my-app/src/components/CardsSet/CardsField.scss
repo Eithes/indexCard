@@ -6,14 +6,10 @@
   align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  // justify-content: stretch;
-  
+  position: relative;
   align-content: flex-start;
   min-width: 100%;
   width: 100%;
-  
   background: rgba(255, 255, 255, 0.918);
-  border-style: solid;
-  border-color: rgba(0,0,0,.5);
-  border-width: 2px  0   0  2px;
+
 }

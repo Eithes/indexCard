@@ -1,11 +1,8 @@
 .Card {
-  flex: 1 0 100%;
-  min-height: 17rem;
-  cursor: pointer;
-  border-style: solid;
-  border-color: rgba(0,0,0,.3);
-  border-width:  0  2px 2px  0;
-  color: #121212;
+  flex: 1 0 100%; 
+  padding: 1rem;
+  color: #121212;  
+  
   &:hover {
     // background-color: lighten();
     .Card_info .Card_info_difficulty::before {      
@@ -16,21 +13,21 @@
     }
     .Card_header::before {
       width: 100%;
-      height: 70%;
-      top: 15%;
-      left: 0%;
-      transition: all ease-out .5s;
+      height: 2px;      
+      left: 0%;      
     }
   }
-  &:active {
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);
+  &:active .Card_wrapper {
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.5);    
   }
 
-  .Card_wrapper {
+  .Card_wrapper {    
+    cursor: pointer; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    min-height: 17rem;
   }
   .Card_header {
     padding: .5rem .2rem;
@@ -46,12 +43,12 @@
       content: '';
       display: block;
       width: 0%;
-      height: 50%; 
+      height: 2px; 
       position: absolute;
-      top: 30%;
-      left: 0%; 
-      background-color: #e4da8c;     
-      border-radius: 40%;      
+      top: 80%;
+      left: 50%;
+      background:  linear-gradient(90deg, rgba(160, 158, 158, 0.4) 0%,  rgba(18,18,18,1) 25%, rgba(18,18,18,1) 50%, rgba(18,18,18,1) 75%, rgba(160, 158, 158, 0.4) 100%);  
+      transition: all ease-out .5s;    
       z-index: -1;  
     }
   }
@@ -60,7 +57,7 @@
     flex: 1 1 auto;   
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center;   
     li {
       list-style: none;
       &::first-letter {
@@ -97,7 +94,8 @@
         display: block;
         width: 0%;
         height: 0%;
-        background-color: #e4da8c;
+        background-color: rgba(245, 245, 245, 1);        
+        background: radial-gradient(circle, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 20%, rgba(129,128,128,.1) 100%);
         border-radius: 50%;
         position: absolute;
         top: 50%;
@@ -128,5 +126,148 @@
   }
   @media (min-width: 2000px){
     flex: 0 0 14.285%;    
+  }
+
+  .Card_opened {
+    position: fixed;    
+    top: 0;   
+    left: 0;
+    bottom: 0;  
+    z-index: 100;
+    overflow: scroll;
+    transition: all ease-out .5s;
+    
+    .Card_opened_wrapper {
+      position: relative;
+      top: 10%;
+      width: 100%;
+      padding: 5% 10%;      
+      background-color: rgba(245, 245, 245, 0.884);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      @media (min-width: 980px) {
+        padding: 5% 20%;   
+      }
+    }
+
+    .Card_opened_close {
+      cursor: pointer; 
+      position: absolute;
+      right: 10%;
+      padding: 1rem;
+      transition: all ease-out .1s;
+      @media (min-width: 980px) {
+        right: 20%;
+      }
+      &:hover {
+        transform: scale(1.4);
+      }
+      &:active {       
+        color:rgb(73, 0, 0);
+      }
+    }
+    .Card_header--sub {
+      position: absolute;
+      left: 10%;
+      bottom: 5%;
+      font-weight: 400;
+      padding-top: 2rem;
+      @media (min-width: 980px) {
+        left: 20%;
+      }
+    }
+
+    .Card_opened_header {
+      padding: 1rem;
+    }
+    .Card_answer {
+      padding: 2rem 0;
+    }
+    .Card_opened_buttons {
+      padding: 2rem 0;
+      margin-bottom: 4rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;  
+      .form_radio {
+        margin: 1rem;
+        input[type=radio] {
+          display: none;
+        }
+        label {
+          box-sizing: border-box;
+          display: inline-block;
+          cursor: pointer;
+          padding: .7rem 1rem;  
+          border-radius: 5px;
+          user-select: none;          
+          color: #EAEAEA;
+          font-weight: 700;
+          white-space: nowrap;
+          border: 2px solid rgba(245, 245, 245, 0);
+          transition: all ease-in-out .2s;    
+          &:hover, &:focus {           
+            box-shadow: 2px 2px 7px rgba(0,0,0,.4);
+          }                       
+        }
+
+        input[type=radio]:checked + label {        
+          box-shadow: 4px 4px 10px rgba(0,0,0,.3);          
+        }
+        label.greenBtn{
+          background-color: darken(#A1E48C, 30%);
+          &:hover {
+            background-color: darken(#A1E48C, 25%);
+          }
+          &:active {
+            background-color: darken(#A1E48C, 35%);
+            box-shadow: 4px 4px 10px rgba(0,0,0,.4); 
+          }
+        }
+        label.blueBtn{
+          background-color: darken(#8cb7e4, 30%);
+          &:hover {
+            background-color: darken(#8cb7e4, 25%);
+          }
+          &:active {
+            background-color: darken(#8cb7e4, 35%);
+            box-shadow: 4px 4px 10px rgba(0,0,0,.4); 
+          }
+        }
+        label.redBtn{
+          background-color: darken(#e4ae8c, 30%);
+          &:hover {
+            background-color: darken(#e4ae8c, 25%);
+          }
+          &:active {
+            background-color: darken(#e4ae8c, 35%);
+            box-shadow: 4px 4px 10px rgba(0,0,0,.4); 
+          }
+        }
+      }
+    }
+    .editCardBtn {
+      background: transparent;
+      position: absolute;
+      right: 10%;
+      bottom: 5%;
+      @media (min-width: 980px) {
+        right: 20%;
+      }
+      padding: .5rem 1rem;
+      cursor: pointer;
+      border: 1px solid grey;
+      outline: none;
+      transition: all ease-out .1s;
+      &:hover {
+        background: rgba(245, 245, 245, 1);
+      }
+      &:active {
+        background: rgb(235, 233, 233);
+        box-shadow: 1px 1px 4px rgba(0,0,0,.4);
+      }
+    }
   }
 }
