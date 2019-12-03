@@ -48,15 +48,15 @@ function Card(props) {
             {props.answer}
           </div>
           <form className="Card_opened_buttons">
-            <div class="form_radio">
+            <div className="form_radio">
               <input type='radio' id='green' name='answered' value='0' onChange={handleChange} />
               <label htmlFor='green' className='greenBtn'>I know it!</label>
             </div>
-            <div class="form_radio">
+            <div className="form_radio">
               <input type='radio' name='answered' id='blue' value='1'  onChange={handleChange} />
               <label htmlFor='blue' className='blueBtn'>To Repeat</label>
             </div>   
-            <div class="form_radio">
+            <div className="form_radio">
               <input type='radio' name='answered' id='red'  value='2'  onChange={handleChange} />
               <label htmlFor='red' className='redBtn' >Forgotten</label>
             </div>            

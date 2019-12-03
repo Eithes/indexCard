@@ -4,31 +4,33 @@ import Footer from './Footer';
 import CardsField from './CardsField';
 import './CardSet.scss';
 
-function CardSet(props) {
-  const [cards, setCards] = useState(props.cards);
+function CardSet(props) {  
   
-  const startCards = () => {
+  const sortCardsByColor = (cards) => {
     const greenPack = cards.filter(card => card.color === props.colors[0]);
     const bluePack = cards.filter(card => card.color === props.colors[1]);
     const redPack = cards.filter(card => card.color === props.colors[2]);
-    const newCards = [...greenPack, ...bluePack, ...redPack];  
-    setCards(newCards);
-  };
+    const newCards = [...greenPack, ...bluePack, ...redPack];
+    return newCards;
+  };  
+
+  const [cards, setCards] = useState(sortCardsByColor(props.cards));
  
   const toggleCard = (id, oldCards = cards) => {       
-    const newCards = oldCards.map(card => id === card.id ? {...card, opened: !card.opened } : card);    
+    const newCards = oldCards.map(card => id === card.id ? {...card, opened: !card.opened } : card);
     setCards(newCards);
   };
 
   const changeCardColor = (id, value) => {
     const newCards = cards.map(card => id === card.id ? {...card, color: props.colors[value] } : card);    
-    setCards(newCards);
-    setTimeout(() => toggleCard(id, newCards), 500);
+    const sortedCards = sortCardsByColor(newCards);
+    setCards(sortedCards);
+    setTimeout(() => toggleCard(id, sortedCards), 500);
   };
   
-  useEffect(() => {
-    startCards();
-  }, []);
+  // useEffect(() => {
+    
+  // }, [cards]);
 
   return (
     <div className="CardSet">
