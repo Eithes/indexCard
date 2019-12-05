@@ -9,8 +9,9 @@ function Card(props) {
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);
   }
+
   return (    
-    <div className="Card"        
+    <div className="Card" 
     >
     { !props.opened ? (
       <div className="Card_wrapper"

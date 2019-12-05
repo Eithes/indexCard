@@ -2,7 +2,7 @@ const  colors = ['#A1E48C', '#8cb7e4', '#e4ae8c', '#97e480', '#77bb63','#9fc55a'
 
 export default [
   {
-    setName: 'JS-DOM',
+    setName: 'JS-BASIC',
     id: 'JS-BASIS',
     emoji: 'u1F3E8',  
     colors: ['#A1E48C', '#8cb7e4', '#e4ae8c',],
