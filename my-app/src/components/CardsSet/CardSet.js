@@ -14,9 +14,10 @@ function CardSet(props) {
     return newCards;
   };
 
-  const [cards, setCards] = useState(sortCardsByColor(props.cards));
-  const [completed, setCompleted] = useState(0);
-  const [sortedIds, setSortedIds] = useState([]);
+  const [cards, setCards] = useState(props.cards);
+  const [shownCards, setShownCards] = useState(sortCardsByColor(props.cards)); 
+ 
+  const [completed, setCompleted] = useState(0);  
   
   
   const countCompleted = (cards) => {
@@ -26,13 +27,14 @@ function CardSet(props) {
   const toggleCard = (id, oldCards = cards) => {       
     const newCards = oldCards.map(card => id === card.id ? {...card, opened: !card.opened } : card);
     setCards(newCards);
+    setShownCards(newCards);
   };
 
   const changeCardColor = (id, value) => {
     const newCards = cards.map(card => id === card.id ? {...card, color: props.colors[value] } : card);
     const sortedCards = sortCardsByColor(newCards);
     setCards(sortedCards);
-    setTimeout(() => toggleCard(id, sortedCards), 500);
+    setTimeout(() => toggleCard(id, sortedCards), 500);    
   }; 
   
   const sortCards = (value) => {
@@ -49,12 +51,15 @@ function CardSet(props) {
         break; 
       default: sortedCards = cards;
     }    
-    const sortedIds = sortedCards.map(card => card.id);    
-    setSortedIds(sortedIds);   
+    const sortedIds = sortedCards.map(card => card.id);
+    return sortedIds;
   }
 
   const changeShownCards = (value) => {
-    sortCards(value);   
+    const ids = sortCards(value);   
+    console.log(ids);
+    const newShownCards = cards.filter(card => ids.includes(card.id));
+    setShownCards(sortCardsByColor(newShownCards));
   }
 
   function progress(numOfCards, completedCards) {
@@ -70,8 +75,10 @@ function CardSet(props) {
   }
   
   useEffect(() => {
-    progress(cards.length, countCompleted(cards));
-  }, [cards, sortedIds]);
+    setTimeout(() => progress(cards.length, countCompleted(cards)), 500);  
+    console.log(shownCards);
+    console.log(cards);    
+  }, [cards, shownCards]);
 
   return (
     <div className="CardSet">
@@ -83,8 +90,7 @@ function CardSet(props) {
         changeShownCards={changeShownCards}
       />     
       <CardsField 
-        cards={cards}
-        sortedIds={sortedIds}       
+        cards={shownCards}              
         colors={props.colors}
         toggleCard={toggleCard}
         changeCardColor={changeCardColor}        

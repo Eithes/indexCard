@@ -1,5 +1,7 @@
 .NavBar {
-  flex: 0 0 8vh;
+  position: fixed;
+  width: 100%;
+  height: 8vh;
   color: rgba(255, 255, 255, 1);
   background: rgba(38, 40, 57, 1);
   box-shadow: -1px 6px 6px -3px rgb(70, 69, 69);
@@ -9,6 +11,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  
   .NavBar_Wrapper {    
     flex: 1 0 100%;  
     display: flex;
@@ -41,6 +44,7 @@
       background-color: #A1E48C;      
       .MuiLinearProgress-barColorPrimary {
         background-color: darken(#A1E48C, 30%);
+        transition: transform ease-out .5s;
       } 
     }
     .NavBar_CardsProgress_Nums {      
@@ -92,13 +96,15 @@
     padding: .5rem 1.2rem;
     background-color: rgba(38, 40, 57, .6);
     border-radius: 50%;
+    cursor: pointer;
 
     @media (min-width: 520px){ 
       position: fixed;
-      top: calc(1% - .5rem);      
+      top: calc(1% - .5rem);    
+      background-color: rgba(165, 166, 175, 0.1);  
     } 
     @media (min-width: 1080px){ 
-      top: calc(2.3% - 1rem);     
+      top: calc(2.5% - 1rem);     
     }
   }
 }
