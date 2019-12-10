@@ -9,6 +9,12 @@ function Card(props) {
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);
   }
+  const handleMore = (e) => {
+    if (e.target.className === 'Card_info_more') {
+      console.log('button');      
+    }    
+    e.preventDefault();   
+  }
 
   return (    
     <div className="Card" 
@@ -26,7 +32,7 @@ function Card(props) {
         </ul>
         <div className="Card_info">
           <span className="Card_info_difficulty">{props.difficulty}</span>
-          <a className="Card_info_more">MORE</a>
+          <a className="Card_info_more" onClick={handleMore}>MORE</a>
         </div>
       </div>
       ) : (

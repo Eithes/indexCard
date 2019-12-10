@@ -7,7 +7,7 @@ import './CardSet.scss';
 function CardSet(props) {
 
   const [green, blue, red] = props.colors;
-  const [initialCards, changeInitialCards ] = useState(props.cards);
+  const [initialCards, changeInitialCards ] = useState(props.cards); 
 
   const sortCardsByColor = (cards) => {
     const greenPack = cards.filter(card => card.color === green);
@@ -54,13 +54,9 @@ function CardSet(props) {
   const changeCardColor = (id, value) => {
     //changing initial cards here too!!!   
     const newInitialCards = initialCards.map(card => id === card.id ? {...card, color: props.colors[value] } : card);
-    changeInitialCards(newInitialCards);
-    console.log(newInitialCards);
+    changeInitialCards(newInitialCards);  
 
-    const newCards = cards.map(card => id === card.id ? {...card, color: props.colors[value] } : card);
-    console.log(newCards);
-    console.log(pickedColor);
-    // if(pickedColor !== all )
+    const newCards = cards.map(card => id === card.id ? {...card,color: props.colors[value] } : card);
     const newFilteredCards = filterByPickedColor(pickedColor, newCards);    
     setCards(newFilteredCards);  
     setTimeout(() => toggleCard(id, newFilteredCards), 500);
@@ -96,7 +92,7 @@ function CardSet(props) {
       return diff;
     });
   }
-  
+ 
   useEffect(() => {
     setTimeout(() => progress(initialCards.length, countCompleted()), 500);   
   }, [cards]);

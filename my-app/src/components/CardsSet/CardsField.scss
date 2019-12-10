@@ -9,10 +9,12 @@
   align-content: flex-start;
   background: rgba(255, 255, 255, 0.918); 
   padding-top: 8vh;
-  @media (min-width: 1080px)  {
-    max-width: 90%;
+  @media (min-width: 1080px)  {   
+    align-content: flex-start;
+    flex: 1 0 90%;   
+    width: 90%;
     align-self: center;
     padding: 2rem 0;
-    padding-top: 10vh;  
+    padding-top: 10vh;
   }
 }
