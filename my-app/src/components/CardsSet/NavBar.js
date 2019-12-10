@@ -6,11 +6,11 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 function NavBar(props) {
-  const {numOfCompleted, numOfCards, progress, changeShownCards} = props;
+  const {numOfCompleted, numOfCards, progress, filterShownCards} = props;
   const [inputValue, setInputValue] = useState('all');
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    changeShownCards(e.target.value);
+    filterShownCards(e.target.value);    
   }
   return (
     <header className="NavBar">

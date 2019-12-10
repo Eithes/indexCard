@@ -3,7 +3,7 @@ import './Card.scss';
 
 function Card(props) {
   const currentColor = props.color;  
-  const handleOpen = () => {
+  const handleOpen = (e) => {
     props.toggleCard(props.id);
   }
   const handleChange = (e) => {
