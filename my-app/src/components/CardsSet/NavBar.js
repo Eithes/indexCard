@@ -1,4 +1,5 @@
 import React, {useState,} from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.scss';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
@@ -16,7 +17,7 @@ function NavBar(props) {
     <header className="NavBar">
     <div className="NavBar_Wrapper"> 
     <div className="NavBar_Logo">
-      <a href="#">IndexCards</a>      
+      <Link to='/'>IndexCards</Link>      
     </div>
     <div className="NavBar_CardsProgress">
       <div className="NavBar_CardsProgress_Nums">

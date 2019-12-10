@@ -4,10 +4,9 @@ import Footer from './Footer';
 import CardsField from './CardsField';
 import './CardSet.scss';
 
-function CardSet(props) {
-
-  const [green, blue, red] = props.colors;
-  const [initialCards, changeInitialCards ] = useState(props.cards); 
+function CardSet(props) {  
+  const [green, blue, red] = props.set.colors;
+  const [initialCards, changeInitialCards ] = useState(props.set.cards); 
 
   const sortCardsByColor = (cards) => {
     const greenPack = cards.filter(card => card.color === green);
@@ -53,10 +52,10 @@ function CardSet(props) {
 
   const changeCardColor = (id, value) => {
     //changing initial cards here too!!!   
-    const newInitialCards = initialCards.map(card => id === card.id ? {...card, color: props.colors[value] } : card);
+    const newInitialCards = initialCards.map(card => id === card.id ? {...card, color: props.set.colors[value] } : card);
     changeInitialCards(newInitialCards);  
 
-    const newCards = cards.map(card => id === card.id ? {...card,color: props.colors[value] } : card);
+    const newCards = cards.map(card => id === card.id ? {...card,color: props.set.colors[value] } : card);
     const newFilteredCards = filterByPickedColor(pickedColor, newCards);    
     setCards(newFilteredCards);  
     setTimeout(() => toggleCard(id, newFilteredCards), 500);
@@ -100,7 +99,7 @@ function CardSet(props) {
   return (
     <div className="CardSet">
       <NavBar 
-        setName={props.setName}
+        setName={props.set.setName}
         progress={completed}
         numOfCards={initialCards.length}
         numOfCompleted={countCompleted(cards)}
@@ -108,13 +107,13 @@ function CardSet(props) {
       />     
       <CardsField 
         cards={cards}              
-        colors={props.colors}
+        colors={props.set.colors}
         toggleCard={toggleCard}
         changeCardColor={changeCardColor}        
       />
       <Footer
-        setName={props.setName}
-        emoji = {props.emoji}
+        setName={props.set.setName}
+        emoji = {props.set.emoji}
       />
     </div>
   );
