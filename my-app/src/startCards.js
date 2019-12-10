@@ -4,7 +4,7 @@ export default [
   {
     setName: 'JS-BASIC',
     id: 'JS-BASIS',
-    emoji: 'u1F3E8',  
+    emoji: 'F',  
     colors: ['#A1E48C', '#8cb7e4', '#e4ae8c',],
     cards: [
       { 

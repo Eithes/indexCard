@@ -112,7 +112,10 @@ function CardSet(props) {
         toggleCard={toggleCard}
         changeCardColor={changeCardColor}        
       />
-      <Footer />
+      <Footer
+        setName={props.setName}
+        emoji = {props.emoji}
+      />
     </div>
   );
 }
