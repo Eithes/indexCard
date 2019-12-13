@@ -19,6 +19,7 @@ function NavBar(props) {
     <div className="NavBar_Logo">
       <Link to='/'>IndexCards</Link>      
     </div>
+    
     <div className="NavBar_CardsProgress">
       <div className="NavBar_CardsProgress_Nums">
         {`${numOfCompleted} / ${numOfCards}`}

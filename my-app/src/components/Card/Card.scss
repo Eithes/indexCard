@@ -73,7 +73,7 @@
     flex: 0 0 2rem;    
     display: flex;    
     justify-content: space-between;    
-    .Card_info_more {
+    &_more {
       background: rgba(0,0,0,.2);
       border-top-left-radius: 3px;
       padding: .5rem;
@@ -86,7 +86,7 @@
         box-shadow: inset 0px 0px 7px rgba(0,0,0,.5);
       }
     }
-    .Card_info_difficulty {
+    &_difficulty {
       padding: .5rem .7rem;
       margin: .1rem;
       flex: 0 0 auto; 

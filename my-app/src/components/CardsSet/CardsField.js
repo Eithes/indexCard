@@ -15,9 +15,9 @@ function CardsField(props) {
     />
   )
   return (
-    <div className="CardsField">
+    <main className="CardsField">
       {cards}
-    </div>
+    </main>
   );
 }
 

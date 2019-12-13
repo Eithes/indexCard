@@ -11,13 +11,12 @@ function Card(props) {
   }
   const handleMore = (e) => {
     if (e.target.className === 'Card_info_more') {
-      console.log('button');      
+
     }    
     e.preventDefault();   
   }
-
-  return (    
-    <div className="Card" 
+  return (
+    <article className="Card" 
     >
     { !props.opened ? (
       <div className="Card_wrapper"
@@ -75,7 +74,7 @@ function Card(props) {
         </div>
       </div>  
       )}    
-    </div>
+    </article>
   );
 }
 

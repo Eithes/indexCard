@@ -2,9 +2,10 @@ const  colors = ['#A1E48C', '#8cb7e4', '#e4ae8c', '#97e480', '#77bb63','#9fc55a'
 
 export default [
   {
-    setName: 'JS-BASIC',
-    id: 'JS-BASIS',
-    emoji: 'F',  
+    setName: 'JS-Basic',
+    id: 'JS-Basic',
+    emoji: 'F',
+    borderColor: '#8cb7e4',
     colors: ['#A1E48C', '#8cb7e4', '#e4ae8c',],
     cards: [
       { 
@@ -109,7 +110,8 @@ export default [
   {
     setName: 'Dom',
     id: 'Dom',
-    emoji: 'D',  
+    emoji: 'D',
+    borderColor: '#8cb7e4',
     colors: ['#A1E48C', '#8cb7e4', '#e4ae8c',],
     cards: [
       { 
@@ -161,7 +163,8 @@ export default [
   {
     setName: 'Greek',
     id: 'Greek',
-    emoji: 'G',  
+    emoji: 'G',
+    borderColor: '#e4ae8c',
     colors: ['#A1E48C', '#8cb7e4', '#e4ae8c',],
     cards: [
       { 
