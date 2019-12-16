@@ -18,6 +18,10 @@ function App() {
         exact path='/set/:id'
         render={ routeProps => <CardSet set={findCardSet(routeProps.match.params.id)} /> }
       />
+      <Route 
+        exact path='/set/:setId/:subTheme'
+        render={ routeProps => <h1> Sub theme page </h1> }
+      />
     </Switch>
   );
 }

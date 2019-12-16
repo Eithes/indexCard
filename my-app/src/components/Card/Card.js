@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Card.scss';
 
 function Card(props) {
@@ -13,11 +14,11 @@ function Card(props) {
     if (e.target.className === 'Card_info_more') {
 
     }    
-    e.preventDefault();   
+    e.preventDefault();
+    e.stopPropagation();     
   }
   return (
-    <article className="Card" 
-    >
+    <article className="Card">
     { !props.opened ? (
       <div className="Card_wrapper"
         style={{backgroundColor: currentColor}}   
@@ -30,8 +31,8 @@ function Card(props) {
           {props.question.split('- ').map((line, i) => <li key={i}>{line}</li>)}
         </ul>
         <div className="Card_info">
-          <span className="Card_info_difficulty">{props.difficulty}</span>
-          <a className="Card_info_more" onClick={handleMore}>MORE</a>
+          <span className="Card_info_difficulty">{props.difficulty}</span>          
+        <Link to='/' className="Card_info_more" onClick={e => e.stopPropagation()}>MORE</Link>
         </div>
       </div>
       ) : (
