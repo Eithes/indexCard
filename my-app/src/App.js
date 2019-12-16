@@ -13,7 +13,7 @@ function App() {
    
   return (
     <Switch>
-      <Route exact path='/' render={() => <SetsList allSets={startCards} />} />
+      <Route exact path='/' render={routeProps => <SetsList allSets={startCards} {...routeProps} />} />
       <Route 
         exact path='/set/:id'
         render={ routeProps => <CardSet set={findCardSet(routeProps.match.params.id)} /> }

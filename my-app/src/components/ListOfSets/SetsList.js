@@ -5,7 +5,11 @@ import SetThumbnail from '../SetThumbnail/SetThumbnail';
 import NavBar from '../layout/NavBar';
 import Footer from '../layout/Footer';
 
-function SetsList({ allSets }) {
+function SetsList(props) {
+  const { allSets } = props;
+  const goToChosenSet = (id) => {
+    props.history.push(`/set/${id}`);  
+  }
   return (
     <div className="SetsList_wrapper">
       <NavBar />
@@ -18,9 +22,9 @@ function SetsList({ allSets }) {
             key={set.id}
             emoji={set.emoji}
             size={set.cards.length}
+            goToChosenSet={goToChosenSet}
           />
-        ) }
-        {allSets.map(set => <p key={set.id}><Link to={`set/${set.id}`}>{set.setName}</Link></p>)}
+        ) }       
       </div> 
       <Footer /> 
     </div>
