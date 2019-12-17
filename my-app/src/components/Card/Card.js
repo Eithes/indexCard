@@ -1,22 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import {CardsContext} from '../contexts/cards.context';
 import './Card.scss';
 
 function Card(props) {
-  const currentColor = props.color;  
+  const { toggleCard } = useContext(CardsContext);
+
+  const currentColor = props.color;
   const handleOpen = (e) => {
-    props.toggleCard(props.id);
+    toggleCard(props.id);
   }
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);
   }
-  const handleMore = (e) => {
-    if (e.target.className === 'Card_info_more') {
-
-    }    
-    e.preventDefault();
-    e.stopPropagation();     
-  }
+ 
   return (
     <article className="Card">
     { !props.opened ? (

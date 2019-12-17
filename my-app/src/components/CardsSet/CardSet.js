@@ -1,17 +1,18 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import NavBar from '../layout/NavBar';
 import Footer from '../layout/Footer';
 import CardsField from './CardsField';
-import useCardsState from '../hooks/useCardsState';
+import {CardsContext} from '../contexts/cards.context';
+
 import './CardSet.scss';
 
-function CardSet(props) {
-  
+function CardSet(props) {  
   const [green, blue, red] = props.set.colors;
   const [ initialCards, changeInitialCards ] = useState(props.set.cards);
-  const { cards, toggleCard, changeShownCardColor, changeColorState } = useCardsState(props.set.cards); 
+  const { cards, changeShownCardColor, changeColorState } = useContext(CardsContext); 
   const [pickedColor, setColor] = useState('all');
   const [completed, setCompleted] = useState(0);
+  
   const countCompleted = () => {
     return initialCards.filter(card => card.color === green).length;
   }
@@ -54,11 +55,9 @@ function CardSet(props) {
         filterShownCards={setPickedColor}        
       />
      
-     <CardsField
-        cards={cards}
+     <CardsField        
         colors={props.set.colors}
-        toggleCard={toggleCard}
-        changeCardColor={changeCardColor}
+        changeCardColor={changeCardColor}     
       />
      
       <Footer
