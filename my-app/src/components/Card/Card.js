@@ -1,35 +1,22 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import {InitCardsContext} from '../contexts/initCards.context';
+import {CardsContext} from '../contexts/cards.context';
 import './Card.scss';
 
 function Card(props) {
-  const {
-    initialCards, 
-    toggleCard, 
-    changeShownCardColor,
-    changeColorState, 
-    findCurrentSet, 
-    sortCardsByColor,
-    changeCardColor     
-  } = useContext(InitCardsContext);  
+  const { toggleCard } = useContext(CardsContext);
 
   const currentColor = props.color;
-  const {id, setIndex, pickedColor } = props;
-  const [opened, toggleOpen] = useState(false);
-
   const handleOpen = (e) => {
-    toggleOpen(!opened);
+    toggleCard(props.id);
   }
-
   const handleChange = (e) => {
-    // changeCardColor(setIndex, id, e.target.value, pickedColor);
-    setTimeout(() => handleOpen(), 500);
+    props.changeCardColor(props.id, e.target.value);
   }
  
   return (
     <article className="Card">
-    { !opened ? (
+    { !props.opened ? (
       <div className="Card_wrapper"
         style={{backgroundColor: currentColor}}   
         onClick={handleOpen}
