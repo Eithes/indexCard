@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import {CardsContext} from '../contexts/cards.context';
 import './Card.scss';
 
-function Card(props) {
-  const { toggleCard } = useContext(CardsContext);
-
+function Card(props) {    
   const currentColor = props.color;
+
   const handleOpen = (e) => {
-    toggleCard(props.id);
+    props.toggleCard(props.id);
   }
+  
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);
   }

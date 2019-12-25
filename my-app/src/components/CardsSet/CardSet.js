@@ -2,32 +2,43 @@ import React, {useState, useEffect, useContext } from 'react';
 import NavBar from '../layout/NavBar';
 import Footer from '../layout/Footer';
 import CardsField from './CardsField';
+import useShownCardsState from '../hooks/useShownCardsState';
 import {CardsContext} from '../contexts/cards.context';
 
 import './CardSet.scss';
 
-function CardSet(props) {  
-  const [green, blue, red] = props.set.colors;
-  const [ initialCards, changeInitialCards ] = useState(props.set.cards);
-  const { cards, changeShownCardColor, changeColorState } = useContext(CardsContext); 
+function CardSet(props) {
+  const colors = {
+    green: '#A1E48C', 
+    blue: '#8cb7e4', 
+    red: '#e4ae8c',
+  } 
+  const setIndex = props.setIndex;
+
+  const { initialCards, changeInitialCards } = useContext(CardsContext);
+  const currentInitialSet = initialCards[setIndex].cards;
+  const { cards, changeShownCardColor, changeColorState, toggleCard } = useShownCardsState(currentInitialSet);
+
   const [pickedColor, setColor] = useState('all');
   const [completed, setCompleted] = useState(0);
-  
-  const countCompleted = () => {
-    return initialCards.filter(card => card.color === green).length;
-  }
 
   const changeCardColor = (id, value) => {
     // changing initial cards here too!!!   
-    const newInitialCards = initialCards.map(card => id === card.id ? {...card, color: props.set.colors[value] } : card);
-    changeInitialCards(newInitialCards);   
-    changeShownCardColor(id, props.set.colors[value], pickedColor);   
+    const newInitialCardsSet = currentInitialSet.map(card => id === card.id ? {...card, color: colors[value] } : card);
+    console.log(setIndex);
+    console.log(initialCards[setIndex]);
+    changeInitialCards(setIndex, newInitialCardsSet);
+    changeShownCardColor(id, colors[value], pickedColor);   
   };
   
   const setPickedColor = (value) => {
     setColor(value);
-    changeColorState(value, initialCards);
+    changeColorState(value, currentInitialSet);
   };
+
+  const countCompleted = () => {
+    return currentInitialSet.filter(card => card.color === colors.green).length;
+  }
 
   function progress(numOfCards, completedCards) {
     setCompleted(() => {
@@ -50,14 +61,16 @@ function CardSet(props) {
       <NavBar 
         setName={props.set.setName}
         progress={completed}
-        numOfCards={initialCards.length}
-        numOfCompleted={countCompleted(cards)}
+        numOfCards={currentInitialSet.length}
+        numOfCompleted={countCompleted(currentInitialSet)}
         filterShownCards={setPickedColor}        
       />
      
      <CardsField        
         colors={props.set.colors}
-        changeCardColor={changeCardColor}     
+        changeCardColor={changeCardColor}
+        toggleCard={toggleCard}
+        cards={cards}        
       />
      
       <Footer
