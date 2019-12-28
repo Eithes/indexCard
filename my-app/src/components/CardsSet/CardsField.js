@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Card from '../Card/Card';
+import {CardsContext} from '../contexts/cards.context';
 import './CardsField.scss';
 
-function CardsField(props) {
-
-  // проверить, есть ли в шоун  
-  const cards = props.cards.map(card => 
+function CardsField(props) { 
+  const cardsToShow = props.cards.map(card => 
     <Card 
       color={card.color}
-      key={card.id} 
-      toggleCard={props.toggleCard}
+      key={card.id}
       changeCardColor={props.changeCardColor}
-      {...card}  
+      toggleCard={props.toggleCard}
+      {...card}
     />
   )
   return (
     <main className="CardsField">
-      {cards}
+      {cardsToShow}
     </main>
   );
 }

@@ -1,22 +1,19 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import {CardsContext} from '../contexts/cards.context';
 import './Card.scss';
 
-function Card(props) {
-  const currentColor = props.color;  
+function Card(props) {    
+  const currentColor = props.color;
+
   const handleOpen = (e) => {
     props.toggleCard(props.id);
   }
+  
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);
   }
-  const handleMore = (e) => {
-    if (e.target.className === 'Card_info_more') {
-
-    }    
-    e.preventDefault();
-    e.stopPropagation();     
-  }
+ 
   return (
     <article className="Card">
     { !props.opened ? (
@@ -56,15 +53,15 @@ function Card(props) {
           </div>
           <form className="Card_opened_buttons">
             <div className="form_radio">
-              <input type='radio' id='green' name='answered' value='0' onChange={handleChange} />
+              <input type='radio' id='green' name='answered' value='green' onChange={handleChange} />
               <label htmlFor='green' className='greenBtn'>I know it!</label>
             </div>
             <div className="form_radio">
-              <input type='radio' name='answered' id='blue' value='1'  onChange={handleChange} />
+              <input type='radio' name='answered' id='blue' value='blue'  onChange={handleChange} />
               <label htmlFor='blue' className='blueBtn'>To Repeat</label>
             </div>   
             <div className="form_radio">
-              <input type='radio' name='answered' id='red'  value='2'  onChange={handleChange} />
+              <input type='radio' name='answered' id='red'  value='red'  onChange={handleChange} />
               <label htmlFor='red' className='redBtn' >Forgotten</label>
             </div>            
           </form>

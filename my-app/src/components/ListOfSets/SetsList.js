@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
 import './SetsList.scss';
 import SetThumbnail from '../SetThumbnail/SetThumbnail';
 import NavBar from '../layout/NavBar';
 import Footer from '../layout/Footer';
+import {CardsContext} from '../contexts/cards.context';
 
 function SetsList(props) {
-  const { allSets } = props;
+
+  const { initialCards } = useContext(CardsContext);
   const goToChosenSet = (id) => {
     props.history.push(`/set/${id}`);  
   }
@@ -14,7 +16,7 @@ function SetsList(props) {
     <div className="SetsList_wrapper">
       <NavBar />
       <div className="SetsList">
-        { allSets.map(set => 
+        { initialCards.map(set => 
           <SetThumbnail 
             id={set.id}
             name={set.setName} 
