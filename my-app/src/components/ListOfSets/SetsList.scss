@@ -1,17 +1,18 @@
 .SetsList_wrapper {
-   width: 100%; 
+   width: 100%;
    background: rgb(38, 40, 57);    
    min-height: 100vh;
    display: grid;
    align-items: center;
 }
-.SetsList {
-    max-width: 92%;
-    margin: 7rem auto;
+.SetsList {  
+    width: 92%;
+    margin: 5rem auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    align-self: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));    
     grid-gap: 1rem;
     @media (min-width: 1080px) {
-      max-width: 70%; 
+     width: 70%; 
     }
 }

@@ -16,6 +16,7 @@ function SetsList(props) {
     <div className="SetsList_wrapper">
       <NavBar />
       <div className="SetsList">
+        
         { initialCards.map(set => 
           <SetThumbnail 
             id={set.id}
