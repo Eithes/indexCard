@@ -1,9 +1,8 @@
-import React, {useContext} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import { Link } from 'react-router-dom';
-import {CardsContext} from '../contexts/cards.context';
 import './Card.scss';
 
-function Card(props) {    
+function Card(props) {
   const currentColor = props.color;
 
   const handleOpen = (e) => {
@@ -12,10 +11,29 @@ function Card(props) {
   
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);
+  } 
+
+  const escFunction = useCallback((e) => {
+    if(e.key === "Escape" ) {     
+      props.closeCard(props.id);
+    }
+  }, []);
+
+  const closeThisCard = (e) => {
+    if(e.target.className === 'Card_opened') {
+      props.closeCard(props.id);
+    }    
   }
- 
+  useEffect(() => {
+      document.addEventListener("keydown", escFunction, false);
+    return () => {
+      document.removeEventListener("keydown", escFunction, false);
+    };  
+  }, []);
+
+
   return (
-    <article className="Card">
+    <article className="Card" onClick={closeThisCard} >
     { !props.opened ? (
       <div className="Card_wrapper"
         style={{backgroundColor: currentColor}}   
@@ -34,7 +52,7 @@ function Card(props) {
       </div>
       ) : (
         <div className="Card_opened" 
-          style={{backgroundColor: currentColor}}          
+          style={{backgroundColor: currentColor}}                  
         >    
         <div className="Card_opened_wrapper">
           <div 

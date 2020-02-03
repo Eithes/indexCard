@@ -3,19 +3,18 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import SetsList from './components/ListOfSets/SetsList';
 import CardSet from './components/CardsSet/CardSet';
-import startCards from './startCards';
-import {CardsContext} from './components/contexts/cards.context';
+import {CardsContext} from './components/contexts/cards/cards.context';
 
 function App() {
 
-  const { initialCards } = useContext(CardsContext);
+  const { cards } = useContext(CardsContext);
  
   function findCardSet(id) {    
-    return  initialCards.find(set => set.id === id);  
+    return  cards.find(set => set.id === id);  
   }
 
   function findCardSetIndex(id) {    
-    return initialCards.findIndex(set => set.id === id);    
+    return cards.findIndex(set => set.id === id);    
   }
    
   return (

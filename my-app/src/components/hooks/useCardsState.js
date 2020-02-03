@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default (startCards) => {
     
-    const [initialCards, setInitialCards] = useState(startCards);
+    const [cards, setCards] = useState(startCards);
 
-    const changeInitialCards = (setNumber, newCards) => {
-      const targetSet = initialCards[setNumber];     
+    const changeCards = (setNumber, newCards) => {
+      const targetSet = cards[setNumber];     
       const newSet = {...targetSet, cards: [...newCards]};     
-      const newInitial = initialCards.slice();
+      const newInitial = cards.slice();
       newInitial[setNumber] = newSet;    
-      setInitialCards(newInitial);
+      setCards(newInitial);
     }
 
     return {
-      initialCards,
-      changeInitialCards,
+      cards,
+      changeCards,
     }
 }

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import {CardsProvider} from './components/contexts/cards.context';
+import {CardsProvider} from './components/contexts/cards/cards.context';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

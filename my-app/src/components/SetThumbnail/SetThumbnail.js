@@ -5,7 +5,6 @@ function SetThumbnail(props) {
   const {id, name, borderColor, emoji, size, goToChosenSet} = props;
   const handleClick = () => {
     goToChosenSet(id);
-    console.log('cklick' , id);
   }
   return (
       <div className="SetThumbnail" 

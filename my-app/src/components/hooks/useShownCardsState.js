@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default (initialCards) => {
     const colors = {
@@ -15,7 +15,7 @@ export default (initialCards) => {
       return newCards;
     };
 
-    const [cards, setCards] = useState(sortCardsByColor(initialCards));  
+    const [shownCards, setCards] = useState(sortCardsByColor(initialCards));  
       
     const filterCardsByColor = (color, newCards = initialCards) => {
       let sortedCards;
@@ -45,24 +45,31 @@ export default (initialCards) => {
         return newCards;
       };
       
-      const toggleCard = (id, oldCards = cards, pickedColor) => {           
+      const toggleShownCard = (id, oldCards = shownCards, pickedColor) => {      
         const newCards = oldCards.map(card => id === card.id ? {...card, opened: !card.opened } : card);
         const newFilteredCards = filterByPickedColor(pickedColor, newCards);
         setCards(newFilteredCards);
       }; /// НАХУЯ????
 
+      const closeShownCard = (id, oldCards = shownCards, pickedColor) => {
+        const newCards = oldCards.map(card => id === card.id ? {...card, opened: false } : card);
+        const newFilteredCards = filterByPickedColor(pickedColor, newCards);
+        setCards(newCards);
+      }
+
     return {
-      cards,
-      toggleCard,
+      shownCards,
+      toggleShownCard,
+      closeShownCard,
 
       changeShownCardColor: (id, value, pickedColor) => {
-        let newCards = cards.map(card => id === card.id ? {...card, color: value } : card);
+        let newCards = shownCards.map(card => id === card.id ? {...card, color: value } : card);
         if (pickedColor === 'all' ) { 
           newCards = filterByPickedColor(pickedColor, newCards);
           setCards(newCards);
         }
         setCards(newCards);
-        setTimeout(() => toggleCard(id, newCards, pickedColor), 500);
+        setTimeout(() => toggleShownCard(id, newCards, pickedColor), 500);
       },
 
       changeColorState: (value, initCards) => {
