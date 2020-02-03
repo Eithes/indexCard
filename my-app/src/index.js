@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import {CardsProvider} from './components/contexts/cards/cards.context';
+import CardsState from './components/contexts/cards/cardsState.context';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
-    <CardsProvider>
+    <CardsState>
       <App />
-    </CardsProvider>    
+    </CardsState>    
   </BrowserRouter>, document.getElementById('root')
 );
 

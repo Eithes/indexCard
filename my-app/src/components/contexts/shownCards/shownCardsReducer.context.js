@@ -1,6 +1,5 @@
 import {  
-  SET_LOADING,
-  CHANGE_CARDS,
+  
 } from '../../../types';
 
 export default (state, action) => {
