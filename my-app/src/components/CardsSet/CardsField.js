@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Card from '../Card/Card';
 import './CardsField.scss';
+import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 
 function CardsField(props) { 
-  const cardsToShow = props.shownCards.map(card => 
+
+  console.log('field rendered');
+  const { shownCards } = useContext(ShownCardsContext);
+
+  const cardsToShow = shownCards.map(card => 
     <Card 
       color={card.color}
       key={card.id}
       changeCardColor={props.changeCardColor}
-      toggleCard={props.toggleCard}
-      closeCard={props.closeCard}
       {...card}
     />
   )

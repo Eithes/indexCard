@@ -3,7 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import './App.scss';
 import SetsList from './components/ListOfSets/SetsList';
 import CardSet from './components/CardsSet/CardSet';
-import {CardsContext} from './components/contexts/cards/cards.context';
+import CardsContext from './components/contexts/cards/cards.context';
+import ShownCardsState from './components/contexts/shownCards/shownCardsState.context';
 
 function App() {
 
@@ -22,8 +23,10 @@ function App() {
       <Route exact path='/' render={routeProps => <SetsList {...routeProps} />} />
       <Route 
         exact path='/set/:id'
-        render={ routeProps => (            
-          <CardSet set={findCardSet(routeProps.match.params.id)} setIndex={findCardSetIndex(routeProps.match.params.id)} />
+        render={ routeProps => (
+          <ShownCardsState set={findCardSet(routeProps.match.params.id)} >
+            <CardSet set={findCardSet(routeProps.match.params.id)} setIndex={findCardSetIndex(routeProps.match.params.id)} />
+          </ShownCardsState>
           )           
         }
       />
