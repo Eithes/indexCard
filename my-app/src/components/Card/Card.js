@@ -2,41 +2,52 @@ import React, {useEffect, useCallback, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import './Card.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
+import CardsContext from '../contexts/cards/cards.context';
 
 function Card(props) {
+  
+  const { cards } = useContext(CardsContext);
   const currentColor = props.color;
+  const setIndex = props.setIndex;
+  const subTheme = props.subTheme;
+  const currentSetID = cards[setIndex].id;  
 
-  const { openShownCard, closeShownCard, opened, currentCardId} = useContext(ShownCardsContext);
+  const {
+    openShownCard, 
+    closeShownCard,
+    opened, 
+    currentCardId
+  } = useContext(ShownCardsContext);
+
+  const handleChange = (e) => {
+    props.changeCardColor(props.id, e.target.value);    
+  }
 
   const handleOpen = (e) => {
     openShownCard(props.id);
   }
-  
-  const handleChange = (e) => {
-    props.changeCardColor(props.id, e.target.value);    
-  } 
-
-  const escFunction = useCallback((e) => {
-    if(e.key === "Escape" ) {     
-      closeShownCard(props.id);
-    }
-  }, []);
 
   const closeThisCard = (e) => {
     if(e.target.className === 'Card_opened') {
       closeShownCard(props.id);
     }    
   }
+
+  const escFunction = useCallback((e) => {
+    if(e.key === "Escape" ) {     
+      closeShownCard(props.id);
+    }
+  }, []); 
+  
   useEffect(() => {
       document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
     };  
-  }, []);  
-
+  }, []);
 
   return (
-    <article className="Card" onClick={closeThisCard} >
+    <article className="Card" onClick={closeThisCard}>
     { currentCardId===props.id && opened ?  (
       <div className="Card_opened" 
         style={{backgroundColor: currentColor}}                  
@@ -106,7 +117,7 @@ function Card(props) {
         </ul>
         <div className="Card_info">
           <span className="Card_info_difficulty">{props.difficulty}</span>          
-        <Link to='/' className="Card_info_more" onClick={e => e.stopPropagation()}>MORE</Link>
+        <Link to={`/set/${currentSetID}/${subTheme}`} className="Card_info_more" onClick={e => e.stopPropagation()}>MORE</Link>
         </div>
       </div>
       )

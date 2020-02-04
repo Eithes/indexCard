@@ -13,6 +13,7 @@ function CardsField(props) {
       color={card.color}
       key={card.id}
       changeCardColor={props.changeCardColor}
+      setIndex={props.setIndex}
       {...card}
     />
   )

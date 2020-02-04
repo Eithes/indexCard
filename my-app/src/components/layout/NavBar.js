@@ -1,18 +1,24 @@
-import React, {useState,} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.scss';
 import LinearProgress from '@material-ui/core/LinearProgress';
-
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 
 function NavBar(props) {
-  const {numOfCompleted, numOfCards, progress, filterShownCards} = props;
+  const {
+    numOfCompleted, 
+    numOfCards, 
+    progress, 
+    filterShownCards
+  } = props;
   const [inputValue, setInputValue] = useState('all');
+  
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    filterShownCards(e.target.value);    
+    filterShownCards(e.target.value);
   }
+  
   return (
     <header className="NavBar">
     <div className="NavBar_Wrapper"> 
@@ -32,7 +38,8 @@ function NavBar(props) {
     </div>
     <div className='NavBar_Controllers'>
       <div className="NavBar_CardsFilter">
-        <Select className="select"
+        <Select 
+          className="select"
           onChange={handleChange}
           value={inputValue}
         >

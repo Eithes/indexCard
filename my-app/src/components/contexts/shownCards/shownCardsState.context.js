@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, } from 'react';
 import ShownCardsContext from './shownCards.context';
 import shownCardsReducer from './shownCardsReducer.context';
 
@@ -10,21 +10,19 @@ import {
 } from '../../../types';
 
 const ShownCardsState = props => {
-
   const initialState = {
     cards: props.set.cards || [],
     opened: false,
     currentCardId: null, 
-    colorState: 'all',
+    colorState: 'all',    
   }
+    
   const colors = {
     green: '#A1E48C', 
     blue: '#8cb7e4', 
     red: '#e4ae8c',
   }
   
-  const [opened, setOpened] = useState(false);
-
   const [state, dispatch] = useReducer(shownCardsReducer, initialState);
 
   const sortCardsByColor = (cards) => {
@@ -56,34 +54,16 @@ const ShownCardsState = props => {
     return filteredCards;
   };
 
-  const setNewColorFilter = (value) => {
-    dispatch({
-      color: value,
-    });
-  }
-
-  const filterByPickedColor = (color, newCards = state.cards) => { 
-    let newFilteredCards;   
-    if (color !== 'all' ) {
-      newFilteredCards = filterCardsByColor(color, newCards);              
-    } else {
-      newFilteredCards = sortCardsByColor(newCards); 
-    }
-    console.log('filterByPickedColor');
-    return newFilteredCards;
-  };
-  
   const openShownCard = (id) => {  
     dispatch({ type: OPEN_CARD, data: id});
-  };
-    
-  const closeShownCard = (id) => {
+  };    
+  const closeShownCard = () => {
     dispatch({ type: CLOSE_CARD });
     console.log('closeShownCard');
   };
     
-  const changeColorState = (value = state.colorState, initCards) => {
-    const filteredCards = filterByPickedColor(value, initCards);   
+  const changeColorState = (value, currentCards) => {
+    const filteredCards = filterCardsByColor(value, currentCards);  
     dispatch({
       type: SET_COLOR,
       data: filteredCards,
@@ -94,15 +74,14 @@ const ShownCardsState = props => {
   
   const changeShownCardColor = (id, value ) => {
     let newCards = state.cards.map(card => id === card.id ? {...card, color: value } : card); 
-    const newFilteredCards = filterByPickedColor(state.colorState, newCards);
+    const newFilteredCards = filterCardsByColor(state.colorState, newCards);
     console.log('changeShownCardColor');
     dispatch({
       type: FILTER_CARDS,
       data: newFilteredCards,
     });
     console.log('changeShownCardColor');
-  };   
-
+  };
   
   return <ShownCardsContext.Provider
     value={{
@@ -113,8 +92,7 @@ const ShownCardsState = props => {
       openShownCard,
       closeShownCard,
       changeShownCardColor,
-      changeColorState,
-      setNewColorFilter,
+      changeColorState,      
     }}
   >
     {props.children}

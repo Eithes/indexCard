@@ -5,13 +5,14 @@ import SetsList from './components/ListOfSets/SetsList';
 import CardSet from './components/CardsSet/CardSet';
 import CardsContext from './components/contexts/cards/cards.context';
 import ShownCardsState from './components/contexts/shownCards/shownCardsState.context';
+import SubThemeSet from './components/CardsSet/SubThemeSet';
 
 function App() {
 
   const { cards } = useContext(CardsContext);
  
   function findCardSet(id) {    
-    return  cards.find(set => set.id === id);  
+    return cards.find(set => set.id === id);
   }
 
   function findCardSetIndex(id) {    
@@ -30,9 +31,9 @@ function App() {
           )           
         }
       />
-      <Route 
+      <Route
         exact path='/set/:setId/:subTheme'
-        render={ routeProps => <h1> Sub theme page </h1> }
+        render={ routeProps => <SubThemeSet {...routeProps} /> }
       />
     </Switch>
   );

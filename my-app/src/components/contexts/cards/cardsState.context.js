@@ -15,11 +15,7 @@ const CardsState = props => {
 
   const [state, dispatch] = useReducer(cardsReducer, initialState);
 
-
-  // const { state, changeCards } = useCardsState(initialState);
-  // const setLoading   
-
-   const setLoading = () => dispatch({ type: SET_LOADING });
+  const setLoading = () => dispatch({ type: SET_LOADING });
 
   // const getCards = () => {
   //   setLoading();
@@ -30,18 +26,18 @@ const CardsState = props => {
   //delete card
   //edit card
 
-   const changeCards = (setNumber, newCards) => {     
-      const targetSet = state.cards[setNumber];
+   const changeCards = (setIndex, newCards) => {     
+      const targetSet = state.cards[setIndex];
       const newSet = {...targetSet, cards: [...newCards]};
       const newSets = state.cards.slice();
-      newSets[setNumber] = newSet;
+      newSets[setIndex] = newSet;
       dispatch({ type: CHANGE_CARDS, data: newSets, });
     }
   
   return <CardsContext.Provider 
     value={{
-      cards:state.cards,
-      loading:state.loading,
+      cards: state.cards,
+      loading: state.loading,
       // getCards,
       changeCards,
     }}
