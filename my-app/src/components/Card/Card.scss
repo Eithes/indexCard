@@ -77,15 +77,8 @@
       background: rgba(0,0,0,.2);
       border-top-left-radius: 3px;
       padding: .5rem;
-      text-transform: uppercase;
       color: #EAEAEA;
       text-decoration: none;
-      &:hover {
-        background: rgba(0,0,0,.4);        
-      }
-      &:active {
-        box-shadow: inset 0px 0px 7px rgba(0,0,0,.5);
-      }
     }
     &_difficulty {
       padding: .5rem .7rem;

@@ -5,7 +5,6 @@ import SetsList from './components/ListOfSets/SetsList';
 import CardSet from './components/CardsSet/CardSet';
 import CardsContext from './components/contexts/cards/cards.context';
 import ShownCardsState from './components/contexts/shownCards/shownCardsState.context';
-import SubThemeSet from './components/CardsSet/SubThemeSet';
 
 function App() {
 
@@ -30,10 +29,6 @@ function App() {
           </ShownCardsState>
           )           
         }
-      />
-      <Route
-        exact path='/set/:setId/:subTheme'
-        render={ routeProps => <SubThemeSet {...routeProps} /> }
       />
     </Switch>
   );

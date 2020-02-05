@@ -1,16 +1,9 @@
 import React, {useEffect, useCallback, useContext} from 'react';
-import { Link } from 'react-router-dom';
 import './Card.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
-import CardsContext from '../contexts/cards/cards.context';
 
 function Card(props) {
-  
-  const { cards } = useContext(CardsContext);
-  const currentColor = props.color;
-  const setIndex = props.setIndex;
-  const subTheme = props.subTheme;
-  const currentSetID = cards[setIndex].id;  
+    const currentColor = props.color;
 
   const {
     openShownCard, 
@@ -117,7 +110,7 @@ function Card(props) {
         </ul>
         <div className="Card_info">
           <span className="Card_info_difficulty">{props.difficulty}</span>          
-        <Link to={`/set/${currentSetID}/${subTheme}`} className="Card_info_more" onClick={e => e.stopPropagation()}>MORE</Link>
+        <div className="Card_info_more" >{props.subTheme}</div>
         </div>
       </div>
       )
