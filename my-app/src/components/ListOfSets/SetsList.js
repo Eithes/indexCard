@@ -1,9 +1,8 @@
 import React, {useContext} from 'react';
 import './SetsList.scss';
 import SetThumbnail from '../SetThumbnail/SetThumbnail';
-import NavBar from '../layout/NavBar';
-import Footer from '../layout/Footer';
 import CardsContext from '../contexts/cards/cards.context';
+import SetForm from '../Forms/editAddSetForm';
 
 function SetsList(props) {
   const { cards } = useContext(CardsContext);
@@ -11,23 +10,18 @@ function SetsList(props) {
     props.history.push(`/set/${id}`);  
   }
   return (
-    <div className="SetsList_wrapper">
-      <NavBar />
+    <div className="SetsList_wrapper">      
       <div className="SetsList">
         
         { cards.map(set => 
           <SetThumbnail 
-            id={set.id}
-            name={set.setName} 
-            borderColor={set.borderColor} 
-            key={set.id}
-            emoji={set.emoji}
-            size={set.cards.length}
+            id={set.id}          
+            key={set.id}            
             goToChosenSet={goToChosenSet}
           />
         ) }       
-      </div> 
-      <Footer /> 
+      </div>
+      <SetForm />
     </div>
   );
 }

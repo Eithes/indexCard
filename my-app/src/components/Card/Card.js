@@ -1,9 +1,12 @@
 import React, {useEffect, useCallback, useContext} from 'react';
 import './Card.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
+import CardsContext from '../contexts/cards/cards.context';
+
 
 function Card(props) {
-    const currentColor = props.color;
+  const currentColor = props.color;
+  const { deleteCard, openCardForm, setCurrentCardState } = useContext(CardsContext);
 
   const {
     openShownCard, 
@@ -12,23 +15,51 @@ function Card(props) {
     currentCardId
   } = useContext(ShownCardsContext);
 
+  const cardToEdit = {
+    name: props.name,
+    id: props.id,
+    question: props.question,
+    answer: props.answer,
+    difficulty: props.difficulty,
+    subTheme: props.subTheme,
+    color: currentColor,
+  }
+
   const handleChange = (e) => {
     props.changeCardColor(props.id, e.target.value);    
   }
 
   const handleOpen = (e) => {
     openShownCard(props.id);
+    setCurrentCardState(cardToEdit);
+  }
+
+  const closeCard = () => {
+    closeShownCard();
+    setCurrentCardState();
+  }
+  const closeCardById = () => {
+    closeShownCard(props.id);
+    setCurrentCardState();
   }
 
   const closeThisCard = (e) => {
     if(e.target.className === 'Card_opened') {
-      closeShownCard(props.id);
+      closeCardById();
     }    
+  }
+  const handleCardDelete = () => {
+    deleteCard(props.id);
+    closeCardById();
+  }
+
+  const handleOpenCardForm = () => {   
+    openCardForm(props.id, cardToEdit);
   }
 
   const escFunction = useCallback((e) => {
     if(e.key === "Escape" ) {     
-      closeShownCard(props.id);
+      closeCardById();
     }
   }, []); 
   
@@ -48,7 +79,7 @@ function Card(props) {
       <div className="Card_opened_wrapper">
         <div 
           className="Card_opened_close"
-          onClick={closeShownCard}>
+          onClick={closeCard}>
           X
         </div>
         <h2 className="Card_opened_header">
@@ -94,7 +125,15 @@ function Card(props) {
         <h4 className="Card_header--sub">
           {props.subTheme}
         </h4>
-        <button className='editCardBtn'>Edit</button>
+        <div className='cardEditButtons'>
+          <button 
+            className='editCardBtn' 
+            onClick={handleOpenCardForm}
+          >
+            Edit
+          </button>
+          <button className='deleteCardBtn' onClick={handleCardDelete}>Delete</button>
+        </div>
       </div>
     </div>  
     ) : (

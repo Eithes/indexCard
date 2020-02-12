@@ -49,8 +49,7 @@ const ShownCardsState = props => {
         filteredCards = newCards.filter(card => card.color === colors.red);
           break; 
         default: filteredCards = newCards;
-    }
-    console.log('filterCardsByColor');
+    }  
     return filteredCards;
   };
 
@@ -58,8 +57,7 @@ const ShownCardsState = props => {
     dispatch({ type: OPEN_CARD, data: id});
   };    
   const closeShownCard = () => {
-    dispatch({ type: CLOSE_CARD });
-    console.log('closeShownCard');
+    dispatch({ type: CLOSE_CARD });    
   };
     
   const changeColorState = (value, currentCards) => {
@@ -68,19 +66,16 @@ const ShownCardsState = props => {
       type: SET_COLOR,
       data: filteredCards,
       color: value,
-    });
-    console.log('changeColorState');
+    });  
   };
   
   const changeShownCardColor = (id, value ) => {
     let newCards = state.cards.map(card => id === card.id ? {...card, color: value } : card); 
     const newFilteredCards = filterCardsByColor(state.colorState, newCards);
-    console.log('changeShownCardColor');
     dispatch({
       type: FILTER_CARDS,
       data: newFilteredCards,
     });
-    console.log('changeShownCardColor');
   };
   
   return <ShownCardsContext.Provider

@@ -1,0 +1,114 @@
+.SetForm {
+  position: fixed;  
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  bottom: 50%;
+  z-index: -10;  
+  display: hidden; 
+  background: rgb(38, 40, 57);
+}
+
+.SetForm-opened {
+  position: fixed;   
+  top: 0;   
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all ease-out .3s;
+  display: block;
+  background: rgb(38, 40, 57);
+  overflow: hidden;
+  overflow-Y: auto ;
+}
+
+.SetForm_wrapper {
+  position: relative;      
+  top: 7%;
+  margin-bottom: 5%;
+  width: 100%;
+  padding: 5% 10%;      
+  background-color: rgba(245, 245, 245, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  @media (min-width: 980px) {
+    padding: 5% 20%;   
+  }
+  .SetForm_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    input, textarea {
+      width: 100%;
+    }
+    .SetForm_emoji {
+      width: 20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    } 
+  }
+  .SetForm_form > label {
+    padding-top: .7rem;
+    padding-bottom: .7rem;
+  }
+  .SetForm_form > input, .SetForm_form > textarea  {
+    padding: .5rem;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid grey;
+    border-radius: 3px;
+    font-size: 1rem;
+    &:focus {
+      outline: 2px solid grey;
+      border-radius: 3px;
+    }
+  }
+  .SetForm_form .SetForm_header {
+    padding: 1rem;
+    font-size: 1.5em;
+    box-sizing: border-box;
+    display: block;
+    border: 1px solid grey;
+    border-radius: 3px;
+    &:focus {
+      outline: 2px solid grey;
+      border-radius: 3px;
+    } 
+  } 
+  .SetForm_form .SetForm_submit {
+    margin-top: 1rem;
+    background-color: darken(#A1E48C, 30%);
+    outline: none;
+    &:hover {
+      background-color: darken(#A1E48C, 25%);
+    }
+    &:active, &:focus {
+      background-color: darken(#A1E48C, 35%);
+      box-shadow: 4px 4px 10px rgba(0,0,0,.4);
+      outline: none;
+      border-radius: 3px;
+    } 
+  }
+
+  .SetForm_close {
+    cursor: pointer; 
+    position: absolute;
+    right: 10%;
+    padding: 1rem;
+    transition: all ease-out .1s;
+    @media (min-width: 980px) {
+      right: 20%;
+    }
+    &:hover {
+      transform: scale(1.4);
+    }
+    &:active {       
+      color:rgb(73, 0, 0);
+    }
+  }
+}

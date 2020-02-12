@@ -5,7 +5,6 @@ import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 
 function CardsField(props) { 
 
-  console.log('field rendered');
   const { shownCards } = useContext(ShownCardsContext);
 
   const cardsToShow = shownCards.map(card => 

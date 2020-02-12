@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Footer.scss';
+import CardsContext from '../contexts/cards/cards.context';
 
 function Footer(props) {
-  const { setName, emoji, } = props;
+  const { cards, currentIndex } = useContext(CardsContext);
+  let emoji, setName;
+  if(currentIndex !== null) {
+   emoji = cards[currentIndex].emoji;
+   setName = cards[currentIndex].setName;
+  } 
+
   return (
     <footer className="Footer">
       <h4 className='Footer-name'>{setName}</h4>

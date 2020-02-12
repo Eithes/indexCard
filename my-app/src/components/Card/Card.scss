@@ -130,8 +130,9 @@
     top: 0;   
     left: 0;
     bottom: 0;  
+    right: 0; 
     z-index: 100;
-    overflow: scroll;
+    overflow-y: scroll;
     transition: all ease-out .5s;
     
     .Card_opened_wrapper {
@@ -245,24 +246,47 @@
         }
       }
     }
-    .editCardBtn {
-      background: transparent;
+    .cardEditButtons {      
+      display: flex;
+      flex-direction: row;
       position: absolute;
       right: 10%;
-      bottom: 5%;
+      bottom: 0%;
       @media (min-width: 980px) {
         right: 20%;
       }
+      @media (min-width: 300px){
+        bottom: 4%;    
+      }
+    }
+    .editCardBtn {
+      background: transparent; 
+      padding: .5rem 1rem;
+      cursor: pointer;
+      border: 1px solid grey;
+      outline: none;
+      transition: all ease-out .1s;
+      margin-right: 1rem;
+      &:hover {
+        background: rgba(245, 245, 245, 1);
+      }
+      &:active {
+        background: rgb(235, 233, 233);
+        box-shadow: 1px 1px 4px rgba(0,0,0,.4);
+      }
+    }
+    .deleteCardBtn {
+      background: transparent; 
       padding: .5rem 1rem;
       cursor: pointer;
       border: 1px solid grey;
       outline: none;
       transition: all ease-out .1s;
       &:hover {
-        background: rgba(245, 245, 245, 1);
+        background: #e4ae8c;
       }
       &:active {
-        background: rgb(235, 233, 233);
+        background: lighten(#e4ae8c, 15%);
         box-shadow: 1px 1px 4px rgba(0,0,0,.4);
       }
     }
