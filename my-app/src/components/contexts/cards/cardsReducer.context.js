@@ -3,9 +3,7 @@ import {
   CHANGE_CARDS,
   CHANGE_INDEX,
   CHANGE_PROGRESS,
-  CHANGE_COLORFILTER,
-  DELETE_SET,
-  ADD_SET,
+  CHANGE_COLORFILTER, 
   SET_CURRENT_CARD,
   OPEN_CLOSE_CARD_EDIT,
   OPEN_CLOSE_SET_ADDITION,
@@ -44,17 +42,7 @@ export default (state, action) => {
       return {
         ...state,
         colorFilter: action.data,
-      }
-    case DELETE_SET:
-      return {
-        ...state,
-        cards: action.data,
-      }
-    case ADD_SET:
-      return {
-        ...state,
-        cards: action.data,
-      }
+      } 
     case SET_CURRENT_CARD: 
       return {
         ...state,

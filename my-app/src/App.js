@@ -1,4 +1,4 @@
-import React, {useContext, Fragment} from 'react';
+import React, {useContext, Fragment, useEffect} from 'react';
 import { Route, Switch, } from 'react-router-dom';
 import './App.scss';
 import SetsList from './components/ListOfSets/SetsList';
@@ -7,6 +7,7 @@ import CardsContext from './components/contexts/cards/cards.context';
 import ShownCardsState from './components/contexts/shownCards/shownCardsState.context';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
+import NotFound from './components/404/notFound';
 
 function App() {
   const { cards } = useContext(CardsContext);
@@ -16,7 +17,11 @@ function App() {
   }
   function findCardSetIndex(id) {    
     return cards.findIndex(set => set.id === id);    
-  }
+  } 
+  useEffect(() => {
+    window.localStorage.setItem('cards', JSON.stringify(cards));
+    console.log('CHANGE!!')
+  }, [cards]);
 
   return (
     <React.Fragment>
@@ -35,6 +40,7 @@ function App() {
             )           
           }
         />
+        <Route render={() => <NotFound />} />
       </Switch>
       <Footer/>
     </React.Fragment>

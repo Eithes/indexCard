@@ -1,16 +1,14 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import CardsContext from './cards.context';
 import cardsReducer from './cardsReducer.context';
 import startCards from '../../../startCards';
-
+import useLStorageState from '../../hooks/useLStorageState';
 import {  
   SET_LOADING,
   CHANGE_CARDS,
   CHANGE_PROGRESS,
   CHANGE_INDEX,
-  CHANGE_COLORFILTER,
-  DELETE_SET,
-  ADD_SET,
+  CHANGE_COLORFILTER, 
   SET_CURRENT_CARD, 
   OPEN_CLOSE_CARD_EDIT,
   OPEN_CLOSE_SET_ADDITION,
@@ -33,8 +31,10 @@ const CardsState = props => {
     color: '#e4ae8c',
   };
 
+  const startCardsFromLS = JSON.parse(window.localStorage.getItem('cards')) || startCards;
+
   const initialState = {
-    cards: startCards || [],   // from LS || []
+    cards: startCardsFromLS,
     loading: false,
     currentIndex: 0,
     currentProgress: {
@@ -74,15 +74,6 @@ const CardsState = props => {
     dispatch({ type: CHANGE_PROGRESS, data: {index, numOfCards, numOfCompleted, progress} });
   }
 
-   // const getCards = () => {
-  //   setLoading();
-  //   //get from ls
-  //   dispatch({ type: GET_CARDS, data: 'cardsFromLS' })
-  // }
-
-  //delete card
-  //edit card
-
   const changeCards = (setIndex, newCards) => {     
     const targetSet = state.cards[setIndex];
     const newSet = {...targetSet, cards: [...newCards]};
@@ -97,20 +88,20 @@ const CardsState = props => {
 
   const deleteSet = (id) => {
     const newCards = state.cards.filter(set => set.id !== id);
-    dispatch({ type: DELETE_SET, data: newCards, });
+    dispatch({ type: CHANGE_CARDS, data: newCards, });
   }
 
   const deleteCard = (id) => {
     const newCards = state.cards[state.currentIndex].cards.filter(card => card.id !== id );
-    let newSets = state.cards;
+    let newSets = [...state.cards];
     newSets[state.currentIndex].cards = newCards;   
-    dispatch({ type: DELETE_SET, data: newSets, });
+    dispatch({ type: CHANGE_CARDS, data: newSets, });
   }
 
   const setCurrentCardState = (cardToEdit = emptyCurrentCardData) => {
     dispatch({ type: SET_CURRENT_CARD, card: cardToEdit, });   
   }
-
+  
   const openCardForm = () => {
     dispatch({ type: OPEN_CLOSE_CARD_EDIT, data: true,});     
   }
@@ -139,7 +130,7 @@ const CardsState = props => {
   const submitSetForm = (newSet) => {
     let newCards = [...state.cards];
     newCards.push(newSet);
-    dispatch({ type: ADD_SET, data: newCards, });
+    dispatch({ type: CHANGE_CARDS, data: newCards, });
   }
   
     
@@ -152,8 +143,7 @@ const CardsState = props => {
       colorFilter: state.colorFilter,
       cardFormOpened: state.cardFormOpened,
       setFormOpened: state.setFormOpened,
-      currentCardData: state.currentCardData,
-      // getCards,
+      currentCardData: state.currentCardData, 
       changeCards,
       getDataForSetNavbar,
       changeIndex,
