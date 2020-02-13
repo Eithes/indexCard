@@ -3,6 +3,7 @@ import {
   OPEN_CARD,
   CLOSE_CARD,
   SET_COLOR,
+  SET_SUBTHEME
 } from '../../../types';
 
 export default (state, action) => {
@@ -29,7 +30,12 @@ export default (state, action) => {
         ...state,
         cards: action.data,
         colorState: action.color,
-      }  
+      }
+    case SET_SUBTHEME: 
+      return {
+        ...state,
+        subTheme: action.data,
+    }    
     default:
     return state;
   }  

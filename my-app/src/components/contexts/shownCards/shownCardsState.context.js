@@ -7,6 +7,7 @@ import {
   OPEN_CARD,
   CLOSE_CARD,
   SET_COLOR,
+  SET_SUBTHEME,
 } from '../../../types';
 
 const ShownCardsState = props => {
@@ -14,7 +15,8 @@ const ShownCardsState = props => {
     cards: props.set.cards || [],
     opened: false,
     currentCardId: null, 
-    colorState: 'all',    
+    colorState: 'all',
+    subTheme: '',
   }
     
   const colors = {
@@ -78,16 +80,26 @@ const ShownCardsState = props => {
     });
   };
   
+  const setSubTheme = (subtheme) => {
+    dispatch({
+      type: SET_SUBTHEME,
+      data: subtheme,
+    });
+  }
+
+
   return <ShownCardsContext.Provider
     value={{
       shownCards: sortCardsByColor(state.cards),
       opened: state.opened,
       currentCardId: state.currentCardId,
       colorState: state.colorState,
+      subTheme: state.subTheme,
       openShownCard,
       closeShownCard,
       changeShownCardColor,
-      changeColorState,      
+      changeColorState,
+      setSubTheme,  
     }}
   >
     {props.children}
