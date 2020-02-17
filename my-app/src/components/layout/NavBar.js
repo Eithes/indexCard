@@ -35,6 +35,7 @@ function NavBar(props) {
     setNewColorFilter('all');
     setInputValue('all');
     changeIndex(null);
+    //eslint-disable-next-line
   }, [history.location.pathname]);
  
 

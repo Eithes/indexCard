@@ -1,4 +1,4 @@
-import React, {useContext, Fragment, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Switch, } from 'react-router-dom';
 import './App.scss';
 import SetsList from './components/ListOfSets/SetsList';
@@ -20,7 +20,7 @@ function App() {
   } 
   useEffect(() => {
     window.localStorage.setItem('cards', JSON.stringify(cards));
-    console.log('CHANGE!!')
+    //eslint-disable-next-line    
   }, [cards]);
 
   return (

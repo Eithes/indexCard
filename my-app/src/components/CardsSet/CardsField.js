@@ -2,7 +2,6 @@ import React, {useContext} from 'react';
 import Card from '../Card/Card';
 import './CardsField.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
-import CardsContext from '../contexts/cards/cards.context';
 import GoBackCard from '../Card/GoBackCard';
 
 function CardsField(props) { 

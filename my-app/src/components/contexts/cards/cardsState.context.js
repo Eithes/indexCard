@@ -1,10 +1,9 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import CardsContext from './cards.context';
 import cardsReducer from './cardsReducer.context';
 import startCards from '../../../startCards';
-import useLStorageState from '../../hooks/useLStorageState';
-import {  
-  SET_LOADING,
+
+import {
   CHANGE_CARDS,
   CHANGE_PROGRESS,
   CHANGE_INDEX,
@@ -51,7 +50,7 @@ const CardsState = props => {
   const [state, dispatch] = useReducer(cardsReducer, initialState);
 
   //To DO - loading image
-  const setLoading = () => dispatch({ type: SET_LOADING });
+  // const setLoading = () => dispatch({ type: SET_LOADING });
 
   const changeIndex = (index) => {
     dispatch({ type: CHANGE_INDEX, data: index});    

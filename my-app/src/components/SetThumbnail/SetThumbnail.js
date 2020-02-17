@@ -22,7 +22,6 @@ function SetThumbnail(props) {
   const handleSetDelete = (e) => {
     e.stopPropagation();
     deleteSet(id);
-    console.log(cards)
   }
 
   return (

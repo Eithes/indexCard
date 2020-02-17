@@ -107,12 +107,14 @@ function CardForm(props) {
     if(e.key === "Escape" ) {     
       handleCloseForm();
     }
+    //eslint-disable-next-line
   }, []);
   useEffect(() => {
     document.addEventListener("keydown", escFunction, false);
   return () => {
     document.removeEventListener("keydown", escFunction, false);
-  };  
+  };
+  //eslint-disable-next-line
 }, []);
   
   return (

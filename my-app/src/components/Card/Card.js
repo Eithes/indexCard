@@ -67,13 +67,15 @@ function Card(props) {
     if(e.key === "Escape" ) {     
       closeCardById();
     }
+    //eslint-disable-next-line
   }, []); 
   
   useEffect(() => {
       document.addEventListener("keydown", escFunction, false);
     return () => {
       document.removeEventListener("keydown", escFunction, false);
-    };  
+    };
+    //eslint-disable-next-line
   }, []);
 
   return (

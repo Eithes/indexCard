@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import CardsField from './CardsField';
 import CardsContext from '../contexts/cards/cards.context';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
@@ -20,8 +20,7 @@ function CardSet(props) {
     colorFilter,
   } = useContext(CardsContext);
   const currentSet = cards[setIndex].cards;  
-  const {
-    shownCards,
+  const {  
     changeShownCardColor, 
     changeColorState, 
     closeShownCard
@@ -39,15 +38,18 @@ function CardSet(props) {
   useEffect(() => {
     changeIndex(setIndex);
     getDataForSetNavbar(setIndex);
+    //eslint-disable-next-line
   }, []);
 
    useEffect(() => {
     setTimeout(() => getDataForSetNavbar(setIndex), 1000);
     changeColorState(colorFilter, currentSet);
+    //eslint-disable-next-line
   }, [cards, currentSet]);
 
   useEffect(() => {
     changeColorState(colorFilter, currentSet);
+    //eslint-disable-next-line
   }, [colorFilter]);  
 
   return (
