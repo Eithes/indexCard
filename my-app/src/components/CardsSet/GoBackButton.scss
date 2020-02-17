@@ -1,0 +1,12 @@
+.GoBackBtn {
+  position: fixed;
+  bottom: 6%;
+  right: 1%;
+  padding: 1.5rem;
+  background-color: rgba(105, 104, 104, .9);
+  color: wheat;
+  font-size: 1.8rem;
+  border-radius: 5%;
+  z-index: 1000;
+  cursor: pointer;
+}

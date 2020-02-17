@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import Card from '../Card/Card';
 import './CardsField.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
-import GoBackCard from '../Card/GoBackCard';
+import GoBackButton from './GoBackButton';
 
 function CardsField(props) { 
 
@@ -37,7 +37,7 @@ function CardsField(props) {
   return (
     <main className="CardsField">
       {drawCardsToShow()}
-      {subTheme !== '' && <GoBackCard />}
+      {subTheme !== '' && <GoBackButton />}
     </main>
   );
 }
