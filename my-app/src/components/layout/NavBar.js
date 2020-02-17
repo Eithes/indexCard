@@ -73,9 +73,9 @@ function NavBar(props) {
         }
       </div>
       { page === 'set' ?
-        <div className='NavBar_AddCard' onClick={openCardForm}><AddIcon /></div>
+        <div className='NavBar_AddCard' title="Add New Card" onClick={openCardForm}><AddIcon /></div>
         :
-        <div className='NavBar_AddSet' onClick={openSetForm} ><AddIcon /></div>
+        <div className='NavBar_AddSet' title="Add New Card Set" onClick={openSetForm} ><AddIcon /></div>
       }
     </div>
     

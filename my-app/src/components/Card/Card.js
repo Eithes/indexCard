@@ -12,7 +12,8 @@ function Card(props) {
     openShownCard, 
     closeShownCard,
     opened, 
-    currentCardId
+    currentCardId,
+    setSubTheme,
   } = useContext(ShownCardsContext);
 
   const cardToEdit = {
@@ -55,6 +56,11 @@ function Card(props) {
 
   const handleOpenCardForm = () => {   
     openCardForm(props.id, cardToEdit);
+  }
+
+  const handleSetSubTheme = (e) => {
+    e.stopPropagation(); 
+    setSubTheme(props.subTheme);
   }
 
   const escFunction = useCallback((e) => {
@@ -149,7 +155,7 @@ function Card(props) {
         </ul>
         <div className="Card_info">
           <span className="Card_info_difficulty">{props.difficulty}</span>          
-        <div className="Card_info_more" >{props.subTheme}</div>
+        <div className="Card_info_more" onClick={handleSetSubTheme}>{props.subTheme}</div>
         </div>
       </div>
       )
