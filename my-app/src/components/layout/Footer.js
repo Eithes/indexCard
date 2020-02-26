@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './Footer.scss';
 import CardsContext from '../contexts/cards/cards.context';
 
-function Footer(props) {
+function Footer() {
   const { cards, currentIndex } = useContext(CardsContext);
   let emoji, setName;
   if(currentIndex !== null && cards.length > 0) {

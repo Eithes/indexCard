@@ -3,7 +3,7 @@ import './SetForm.scss';
 import CardsContext from '../contexts/cards/cards.context';
 const uuid = require('uuid-v4');
 
-function SetForm(props) {
+function SetForm() {
   const { 
     setFormOpened, 
     closeSetForm,    
@@ -14,17 +14,14 @@ function SetForm(props) {
   const [formEmoji, setEmoji] = useState('');
   const [formBorderColor, setFormBorderColor] = useState(''); 
 
-  const handleNameChange = (e) => {
-    //VALIDATE??
+  const handleNameChange = (e) => { 
     setNameOfSet(e.target.value);
   }
   const handleBorderColorChange = (e) => {
-    //VALIDATE??
     setFormBorderColor(e.target.value);
   }
  
   const handleEmojiChange = (e) => {
-    //VALIDATE??
     setEmoji(e.target.value);
   } 
 
@@ -40,7 +37,6 @@ function SetForm(props) {
     submitSetForm(newSet);
     closeSetForm();
   }
-
   
   return (
     <div className={setFormOpened ? 'SetForm-opened' : 'SetForm'}>

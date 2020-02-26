@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './GoBackButton.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 
-function GoBackButton(props) {
+function GoBackButton() {
 
   const { setSubTheme } = useContext(ShownCardsContext);
  

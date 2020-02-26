@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import CardsContext from '../contexts/cards/cards.context';
 import AddIcon from '@material-ui/icons/Add';
 
-function NavBar(props) {
+function NavBar() { 
   const [page, changePage] = useState('main');
   const { 
     currentProgress,

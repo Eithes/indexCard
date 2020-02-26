@@ -1,33 +1,34 @@
 import React, {useEffect, useCallback, useContext} from 'react';
+import PropTypes from 'prop-types';
 import './Card.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 import CardsContext from '../contexts/cards/cards.context';
+import colors from '../library/colors';
 
-
-function Card(props) {
+function Card(props) {  
   const currentColor = props.color;
   const { deleteCard, openCardForm, setCurrentCardState } = useContext(CardsContext);
 
   const {
     openShownCard, 
     closeShownCard,
-    opened, 
+    opened,
     currentCardId,
     setSubTheme,
   } = useContext(ShownCardsContext);
 
   const cardToEdit = {
-    name: props.name,
-    id: props.id,
-    question: props.question,
-    answer: props.answer,
-    difficulty: props.difficulty,
-    subTheme: props.subTheme,
-    color: currentColor,
+    name: props.name || '',
+    id: props.id || '',
+    question: props.question || '',
+    answer: props.answer || '',
+    difficulty: props.difficulty || 1,
+    subTheme: props.subTheme || '',
+    color: currentColor || colors.red,
   }
 
   const handleChange = (e) => {
-    props.changeCardColor(props.id, e.target.value);    
+    props.changeCardColor(props.id, e.target.value);
   }
 
   const handleOpen = (e) => {
@@ -50,8 +51,10 @@ function Card(props) {
     }    
   }
   const handleCardDelete = () => {
-    deleteCard(props.id);
-    closeCardById();
+    if(window.confirm('Are you sure?')) {
+      deleteCard(props.id);
+      closeCardById();
+    }  
   }
 
   const handleOpenCardForm = () => {   
@@ -165,5 +168,17 @@ function Card(props) {
     </article>
   );
 }
+
+Card.propTypes = {
+  name: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  changeCardColor: PropTypes.func.isRequired,
+  setIndex: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  question: PropTypes.string.isRequired,
+  answer: PropTypes.string.isRequired,
+  difficulty: PropTypes.number.isRequired,
+  subTheme: PropTypes.string.isRequired,
+};
 
 export default Card;

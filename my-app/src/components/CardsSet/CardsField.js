@@ -1,18 +1,16 @@
 import React, {useContext} from 'react';
+import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import './CardsField.scss';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 import GoBackButton from './GoBackButton';
 
 function CardsField(props) { 
-
   const { shownCards, subTheme, } = useContext(ShownCardsContext);
-  
+    
   const drawCardsToShow = () => {
-    let cardsToShow;
-    if(subTheme !== '') {      
-      const subThemeCardsToShow = shownCards.filter(card => card.subTheme === subTheme );          
-      cardsToShow = subThemeCardsToShow.map(card => 
+    const cardsToShow = shownCards.filter(card => (subTheme === '' || card.subTheme === subTheme) );
+    const cardsToShowRender = cardsToShow.map(card => 
         <Card 
           color={card.color}
           key={card.id}
@@ -20,20 +18,10 @@ function CardsField(props) {
           setIndex={props.setIndex}
           {...card}
         />
-      )   
-    } else {
-      cardsToShow = shownCards.map(card => 
-        <Card 
-          color={card.color}
-          key={card.id}
-          changeCardColor={props.changeCardColor}
-          setIndex={props.setIndex}
-          {...card}
-        />
-      )
-    }
-    return cardsToShow;
+    );
+    return cardsToShowRender;
   }
+  
   return (
     <main className="CardsField">
       {drawCardsToShow()}
@@ -41,5 +29,10 @@ function CardsField(props) {
     </main>
   );
 }
+
+CardsField.propTypes = {
+  setIndex: PropTypes.number.isRequired,  
+  changeCardColor: PropTypes.func.isRequired,
+};
 
 export default CardsField;

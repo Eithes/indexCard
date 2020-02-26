@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
+import PropTypes from 'prop-types';
 import './SetsList.scss';
 import SetThumbnail from '../SetThumbnail/SetThumbnail';
 import CardsContext from '../contexts/cards/cards.context';
 import SetForm from '../Forms/editAddSetForm';
 
-function SetsList(props) {
+function SetsList(props) {  
   const { cards } = useContext(CardsContext);
   const goToChosenSet = (id) => {
     props.history.push(`/set/${id}`);  
@@ -25,5 +26,9 @@ function SetsList(props) {
     </div>
   );
 }
+
+SetsList.propTypes = {
+  history: PropTypes.object //eslint-disable-line  
+};
 
 export default SetsList;

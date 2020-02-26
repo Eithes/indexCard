@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import './SetThumbnail.scss';
 import CardsContext from '../contexts/cards/cards.context';
 
-function SetThumbnail(props) {
+function SetThumbnail(props) { 
   const {id, goToChosenSet} = props;
   const { cards, deleteSet } = useContext(CardsContext);
 
@@ -21,7 +22,9 @@ function SetThumbnail(props) {
 
   const handleSetDelete = (e) => {
     e.stopPropagation();
-    deleteSet(id);
+    if(window.confirm('Are you sure?')) {
+      deleteSet(id);
+    }  
   }
 
   return (
@@ -40,5 +43,10 @@ function SetThumbnail(props) {
     </div>  
   );
 }
+
+SetThumbnail.propTypes = { 
+  id: PropTypes.string.isRequired,
+  goToChosenSet: PropTypes.func.isRequired,
+};
 
 export default SetThumbnail;

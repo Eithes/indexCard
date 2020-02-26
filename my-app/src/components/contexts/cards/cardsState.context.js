@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react';
 import CardsContext from './cards.context';
 import cardsReducer from './cardsReducer.context';
-import startCards from '../../../startCards';
+import colors from '../../library/colors';
+import cardsStorageHandler from '../../localStorage/LSHandler';
 
 import {
   CHANGE_CARDS,
@@ -14,12 +15,7 @@ import {
 } from '../../../types';
 
 const CardsState = props => {
-  const colors = {
-    green: '#A1E48C', 
-    blue: '#8cb7e4', 
-    red: '#e4ae8c',
-  };
-
+  
   const emptyCurrentCardData = {
     name: '',
     id: null,
@@ -30,10 +26,8 @@ const CardsState = props => {
     color: '#e4ae8c',
   };
 
-  const startCardsFromLS = JSON.parse(window.localStorage.getItem('cards')) || startCards;
-
   const initialState = {
-    cards: startCardsFromLS,
+    cards: cardsStorageHandler.getCardsFromLS(),
     loading: false,
     currentIndex: 0,
     currentProgress: {
@@ -59,16 +53,12 @@ const CardsState = props => {
   const getDataForSetNavbar = (index = state.currentIndex) => {
     const currentSet = state.cards[index].cards;
     const numOfCards = state.cards[index].cards.length;
-    const numOfCompleted = currentSet.filter(card => card.color === colors.green).length;    
-    function countProgress() {
-      if (numOfCards === numOfCompleted) {
-            return 100;
-      } else if(numOfCompleted === 0) {
-            return 0;
-      };      
-      const diff = numOfCompleted * 100 / numOfCards;      
-      return diff;        
+    const numOfCompleted = currentSet.filter(card => card.color === colors.green).length; 
+
+    function countProgress() {   
+      return numOfCompleted * 100 / numOfCards;        
     };
+
     const progress = countProgress();
     dispatch({ type: CHANGE_PROGRESS, data: {index, numOfCards, numOfCompleted, progress} });
   }

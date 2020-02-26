@@ -1,6 +1,8 @@
 import React, { useReducer, } from 'react';
+import PropTypes from 'prop-types';
 import ShownCardsContext from './shownCards.context';
 import shownCardsReducer from './shownCardsReducer.context';
+import colors from '../../library/colors';
 
 import {
   FILTER_CARDS,
@@ -10,19 +12,13 @@ import {
   SET_SUBTHEME,
 } from '../../../types';
 
-const ShownCardsState = props => {
+const ShownCardsState = props => {  
   const initialState = {
-    cards: props.set.cards || [],
+    cards: props.cards || [],
     opened: false,
-    currentCardId: null, 
+    currentCardId: null,
     colorState: 'all',
     subTheme: '',
-  }
-    
-  const colors = {
-    green: '#A1E48C', 
-    blue: '#8cb7e4', 
-    red: '#e4ae8c',
   }
   
   const [state, dispatch] = useReducer(shownCardsReducer, initialState);
@@ -36,22 +32,21 @@ const ShownCardsState = props => {
   };
 
   const filterCardsByColor = (color = state.colorState, newCards = state.cards) => {
+
     let filteredCards;
       switch (color) {      
-        case 'green':
-        case '0':
+        case 'green':       
           filteredCards = newCards.filter(card => card.color === colors.green);
           break;
-        case 'blue':
-        case '1':
+        case 'blue':       
           filteredCards = newCards.filter(card => card.color === colors.blue);
           break;
-        case 'red':
-        case '2':        
+        case 'red':       
         filteredCards = newCards.filter(card => card.color === colors.red);
           break; 
         default: filteredCards = newCards;
-    }  
+    }
+   
     return filteredCards;
   };
 
@@ -87,7 +82,6 @@ const ShownCardsState = props => {
     });
   }
 
-
   return <ShownCardsContext.Provider
     value={{
       shownCards: sortCardsByColor(state.cards),
@@ -105,5 +99,11 @@ const ShownCardsState = props => {
     {props.children}
   </ShownCardsContext.Provider>
 }
+
+
+ShownCardsState.propTypes = {
+  setOfCards: PropTypes.array.isRequired,
+};
+
 
 export default ShownCardsState;

@@ -1,20 +1,18 @@
 import React, { useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import CardsField from './CardsField';
 import CardsContext from '../contexts/cards/cards.context';
 import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 import './CardSet.scss';
 import CardForm from '../Forms/editAddCardForm';
+import colors from '../library/colors';
 
 function CardSet(props) {
-  const colors = {
-    green: '#A1E48C', 
-    blue: '#8cb7e4',
-    red: '#e4ae8c',
-  }
+  
   const setIndex = props.setIndex;
   const { 
     cards, 
-    changeCards, 
+    changeCards,
     getDataForSetNavbar, 
     changeIndex,
     colorFilter,
@@ -22,8 +20,8 @@ function CardSet(props) {
   const currentSet = cards[setIndex].cards;  
   const {  
     changeShownCardColor, 
-    changeColorState, 
-    closeShownCard
+    changeColorState,
+    closeShownCard,
   } = useContext(ShownCardsContext);
 
   const changeCardColor = (id, value) => {
@@ -54,8 +52,7 @@ function CardSet(props) {
 
   return (
     <div className='CardSet'>        
-     <CardsField        
-        colors={props.set.colors}  
+     <CardsField
         changeCardColor={changeCardColor}
         setIndex={setIndex}      
       />
@@ -63,5 +60,20 @@ function CardSet(props) {
     </div>
   );
 }
+
+CardSet.defaultProps = {
+  cards: [],
+};
+
+CardSet.propTypes = {
+  setIndex: PropTypes.number.isRequired,  
+  setOfCards: PropTypes.shape({
+    setName: PropTypes.string,
+    id: PropTypes.string,
+    emoji: PropTypes.string,
+    borderColor: PropTypes.string,  
+    cards: PropTypes.array,
+  }).isRequired,  
+};
 
 export default CardSet;

@@ -1,15 +1,13 @@
 import React, {useContext, useState, useEffect, useCallback} from 'react';
 import './CardForm.scss';
 import CardsContext from '../contexts/cards/cards.context';
-import ShownCardsContext from '../contexts/shownCards/shownCards.context';
 const uuid = require('uuid-v4');
 
-function CardForm(props) {
+function CardForm() {
   const { 
     cardFormOpened, 
     currentCardData, 
     closeCardForm, 
-    setCurrentCardState, 
     submitCardForm,
   } = useContext(CardsContext); 
   const {
@@ -20,9 +18,7 @@ function CardForm(props) {
     difficulty,
     subTheme,
     color,
-  } = currentCardData;
-
-  const { closeShownCard } = useContext(ShownCardsContext);
+  } = currentCardData; 
 
   const [formHeader, setHeader] = useState(name);
   const [formQuestion, setQuestion] = useState(question);
@@ -72,11 +68,10 @@ function CardForm(props) {
       setError(true);
       setErrorMessage('You should fill all fields');
       return false;
-    } else {
-      setError(false);
-      setErrorMessage('');         
-      return true;
     }
+    setError(false);
+    setErrorMessage('');         
+    return true;
   }
 
   const handleCardFormSubmit = (e) => {    
@@ -87,19 +82,17 @@ function CardForm(props) {
       newCard.name = formHeader.toString();
       newCard.question = formQuestion.toString();
       newCard.answer = formAnswer.toString();
-      newCard.difficulty = formDifficulty;
+      newCard.difficulty = +formDifficulty;
       newCard.subTheme = formSubTheme.toString();
-      newCard.color = color;
+      newCard.color = color.toString();
       let newId = uuid();  
       submitCardForm(id, newCard, newId);
-      handleCloseForm();        
+      handleCloseForm();      
     };  
   }
 
   const handleCloseForm = () => {
-    closeCardForm();
-    closeShownCard(id);
-    setCurrentCardState();
+    closeCardForm();   
     setError(false);
   }
 
@@ -124,8 +117,7 @@ function CardForm(props) {
           <div className='CardForm_close' onClick={handleCloseForm}>X</div>
           <label htmlFor='formHeader'>Card header</label>
           <input 
-            type='text'
-            // required            
+            type='text'       
             id='formHeader'
             name='formHeader'
             className={isError && formHeader.length === 0 ? "CardForm_header CardForm-red" : (formHeader.length >= 2) ? "CardForm_header CardForm-green" : "CardForm_header"}
@@ -136,7 +128,6 @@ function CardForm(props) {
           <label htmlFor='difficulty'>Card difficulty (1 to 5 )</label>
           <input 
             type='number'
-            // required
             name='formDifficulty'
             id='formDifficulty'         
             min='1' 
@@ -148,7 +139,6 @@ function CardForm(props) {
           <label htmlFor='question'>Card question</label>
           <textarea           
             className={isError && formQuestion.length === 0 ? "CardForm_question CardForm-red" : (formQuestion.length >= 2) ? "CardForm_question CardForm-green" : "CardForm_question"}
-            //  required
             name='formQuestion' 
             id='formQuestion'
             value={formQuestion} 
@@ -156,8 +146,7 @@ function CardForm(props) {
           </textarea>
           <label htmlFor='answer'>Card answer</label>
           <textarea
-            className={isError && formAnswer.length === 0 ? "CardForm_answer CardForm-red" : (formAnswer.length >= 2) ? "CardForm_answer CardForm-green" : "CardForm_answer"}
-            // required
+            className={isError && formAnswer.length === 0 ? "CardForm_answer CardForm-red" : (formAnswer.length >= 2) ? "CardForm_answer CardForm-green" : "CardForm_answer"}          
             name='formAnswer' 
             id='formAnswer' 
             onChange={handleAnswerChange}
